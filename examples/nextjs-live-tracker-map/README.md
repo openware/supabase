@@ -36,7 +36,7 @@ CREATE POLICY "Allow individual insert access" on public.locations FOR INSERT WI
 Next, copy the `.env.local.example` file in this directory to `.env.local` (which will be ignored by Git):
 
 ```bash
-cp .env.local.example .env.local
+cp .env.local .env.local
 ```
 
 Then set each variable on `.env.local`:

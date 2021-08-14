@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { supabase } from '../lib/initSupabase'
+import { superbase } from '../lib/initSupabase'
 
 export default function Todos({ user }) {
   const [todos, setTodos] = useState([])
@@ -11,14 +11,15 @@ export default function Todos({ user }) {
   }, [])
 
   const fetchTodos = async () => {
-    let { data: todos, error } = await supabase.from('todos').select('*').order('id', true)
+    window.console.log(user);
+    let { data: todos, error } = await superbase.from('todos').select('*').order('id', true)
     if (error) console.log('error', error)
     else setTodos(todos)
   }
   const addTodo = async (taskText) => {
     let task = taskText.trim()
     if (task.length) {
-      let { data: todo, error } = await supabase
+      let { data: todo, error } = await superbase
         .from('todos')
         .insert({ task, user_id: user.id })
         .single()
@@ -29,7 +30,7 @@ export default function Todos({ user }) {
 
   const deleteTodo = async (id) => {
     try {
-      await supabase.from('todos').delete().eq('id', id)
+      await superbase.from('todos').delete().eq('id', id)
       setTodos(todos.filter((x) => x.id != id))
     } catch (error) {
       console.log('error', error)
@@ -71,7 +72,7 @@ const Todo = ({ todo, onDelete }) => {
 
   const toggle = async () => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await superbase
         .from('todos')
         .update({ is_complete: !isCompleted })
         .eq('id', todo.id)
