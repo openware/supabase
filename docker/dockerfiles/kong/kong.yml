@@ -76,6 +76,17 @@ services:
         - /storage/v1/
     plugins:
     -   name: cors
+-   name: applogic-v2
+    url: http://applogic:3000/
+    routes:
+    -   name: applogic-all
+        strip_path: true
+        paths:
+        - /applogic
+    plugins:
+    -   name: go-hello
+        config:
+          message: "hey"
 consumers:
 -   username: 'anon-key'
     keyauth_credentials:
