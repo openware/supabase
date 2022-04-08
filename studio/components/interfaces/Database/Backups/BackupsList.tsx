@@ -67,7 +67,7 @@ const BackupsList: FC<Props> = ({}) => {
         <Panel>
           {!sortedBackups && (
             <div className="text-center p-4">
-              <img className="loading-spinner" src="/img/spinner.gif"></img>
+              <img className="loading-spinner" src="/admin/img/spinner.gif"></img>
             </div>
           )}
           {sortedBackups &&

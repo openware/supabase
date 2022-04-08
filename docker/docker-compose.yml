@@ -9,7 +9,7 @@ version: "3.8"
 services:
   studio:
     container_name: supabase-studio
-    image: supabase/studio:latest
+    image: quay.io/openware/studio:feature-studio-admin
     restart: unless-stopped
     ports:
       - ${STUDIO_PORT}:3000/tcp
@@ -151,7 +151,7 @@ services:
 
   db:
     container_name: supabase-db
-    image: supabase/postgres:14.1.0.15
+    image: supabase/postgres:13.3.0
     command: postgres -c config_file=/etc/postgresql/postgresql.conf
     restart: unless-stopped
     ports:
