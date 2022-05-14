@@ -100,7 +100,7 @@ const ExtensionCard: FC<Props> = ({ extension }) => {
           {extension.name}
         </h3>
         {loading ? (
-          <img className="loading-spinner" src="/img/spinner.gif"></img>
+          <img className="loading-spinner" src="/admin/img/spinner.gif"></img>
         ) : (
           <Toggle
             size="tiny"

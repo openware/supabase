@@ -26,7 +26,7 @@ const ExampleProject: FC<Props> = ({ framework, title, description, url }) => {
               transition-all
               group-hover:scale-110
             "
-            src={`/img/libraries/${framework.toLowerCase()}-icon.svg`}
+            src={`/admin/img/libraries/${framework.toLowerCase()}-icon.svg`}
             alt={`${framework} logo`}
             width="26"
           />

@@ -16,7 +16,7 @@ const Header: FC<Props> = () => {
         <Link href="/">
           <a>
             <img
-              src="/img/supabase-logo.svg"
+              src="/admin/img/supabase-logo.svg"
               alt="Supabase"
               className="border dark:border-dark rounded p-1 hover:border-white"
               style={{ height: 24 }}

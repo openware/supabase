@@ -39,7 +39,7 @@ export default function SchemaFormUnstyled({
       </button>
       {submitButtonLoading ? (
         <button className="btn-primary" disabled="disabled">
-          <img className="loading-spinner" src="/img/spinner.gif"></img>
+          <img className="loading-spinner" src="/admin/img/spinner.gif"></img>
         </button>
       ) : (
         <button

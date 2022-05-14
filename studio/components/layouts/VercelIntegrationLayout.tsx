@@ -20,7 +20,7 @@ const VercelIntegrationLayout: FC<Props> = ({ children }) => {
               <div className="flex justify-start lg:w-0 lg:flex-1">
                 <div>
                   <span className="sr-only">Supabase</span>
-                  <img className="h-6 w-auto sm:h-6" src="/img/supabase-logo.svg" alt="" />
+                  <img className="h-6 w-auto sm:h-6" src="/admin/img/supabase-logo.svg" alt="" />
                 </div>
               </div>
             </div>

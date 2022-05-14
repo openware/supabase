@@ -13,7 +13,7 @@ const ClientLibrary: FC<Props> = ({ language, releaseState, officialSupport, doc
   return (
     <div className="flex space-x-6 items-start">
       <img
-        src={`/img/libraries/${language.toLowerCase()}-icon.svg`}
+        src={`/admin/img/libraries/${language.toLowerCase()}-icon.svg`}
         alt={`${language} logo`}
         width="21"
       />
