@@ -30,6 +30,7 @@ interface Props {
   selectedSchema?: string
   onSelectSchema: (schema: string) => void
   onAddTable: () => void
+  onAddSchema: () => void
   onEditTable: (table: PostgresTable) => void
   onDeleteTable: (table: PostgresTable) => void
   onDuplicateTable: (table: PostgresTable) => void
@@ -39,6 +40,7 @@ const TableEditorMenu: FC<Props> = ({
   selectedSchema,
   onSelectSchema = () => {},
   onAddTable = () => {},
+  onAddSchema = () => {},
   onEditTable = () => {},
   onDeleteTable = () => {},
   onDuplicateTable = () => {},
@@ -157,23 +159,42 @@ const TableEditorMenu: FC<Props> = ({
 
       <div className="space-y-1">
         {!isLocked && (
-          <div className="px-3">
-            {/* Add new table button */}
-            <Button
-              block
-              size="tiny"
-              icon={
-                <div className="text-scale-900">
-                  <IconEdit size={14} strokeWidth={1.5} />
-                </div>
-              }
-              type="default"
-              style={{ justifyContent: 'start' }}
-              onClick={onAddTable}
-            >
-              New table
-            </Button>
-          </div>
+          <>
+            <div className="px-3">
+              {/* Add new schema button */}
+              <Button
+                block
+                size="tiny"
+                icon={
+                  <div className="text-scale-900">
+                    <IconEdit size={14} strokeWidth={1.5} />
+                  </div>
+                }
+                type="default"
+                style={{ justifyContent: 'start' }}
+                onClick={onAddSchema}
+              >
+                New Schema
+              </Button>
+            </div>
+            <div className="px-3">
+              {/* Add new table button */}
+              <Button
+                block
+                size="tiny"
+                icon={
+                  <div className="text-scale-900">
+                    <IconEdit size={14} strokeWidth={1.5} />
+                  </div>
+                }
+                type="default"
+                style={{ justifyContent: 'start' }}
+                onClick={onAddTable}
+              >
+                New table
+              </Button>
+            </div>
+          </>
         )}
         {/* Table search input */}
         <div className="mb-2 block px-3">
