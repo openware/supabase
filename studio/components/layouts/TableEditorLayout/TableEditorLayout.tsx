@@ -12,6 +12,7 @@ interface Props {
   selectedSchema?: string
   onSelectSchema: (schema: string) => void
   onAddTable: () => void
+  onAddSchema: () => void
   onEditTable: (table: PostgresTable) => void
   onDeleteTable: (table: PostgresTable) => void
   onDuplicateTable: (table: PostgresTable) => void
@@ -21,6 +22,7 @@ interface Props {
 const TableEditorLayout: FC<Props> = ({
   selectedSchema,
   onSelectSchema = () => {},
+  onAddSchema = () => {},
   onAddTable = () => {},
   onEditTable = () => {},
   onDeleteTable = () => {},
@@ -66,6 +68,7 @@ const TableEditorLayout: FC<Props> = ({
           selectedSchema={selectedSchema}
           onSelectSchema={onSelectSchema}
           onAddTable={onAddTable}
+          onAddSchema={onAddSchema}
           onEditTable={onEditTable}
           onDeleteTable={onDeleteTable}
           onDuplicateTable={onDuplicateTable}

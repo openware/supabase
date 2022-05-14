@@ -73,7 +73,7 @@ const AuthPolicies = observer(() => {
   const PageState: any = useContext(PageContext)
 
   const { meta } = useStore()
-  const tables = meta.tables.list((table: any) => table.schema === 'public')
+  const tables = meta.tables.list((table: any) => table.schema)
 
   useEffect(() => {
     PageState.tablesLoading = false
@@ -157,7 +157,7 @@ const AuthPoliciesTables = observer(() => {
 
   const refreshTables = async () => {
     await meta.tables.load()
-    const res: any = meta.tables.list((table: any) => table.schema === 'public')
+    const res: any = meta.tables.list((table: any) => table.schema)
     if (!res.error) PageState.tables.replace(res)
   }
 

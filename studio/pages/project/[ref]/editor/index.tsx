@@ -14,15 +14,21 @@ import { SidePanel } from '@supabase/ui'
 const Editor: NextPage = () => {
   const { meta, ui } = useStore()
   const projectRef = ui.selectedProject?.ref
-  const [sidePanelKey, setSidePanelKey] = useState<'row' | 'column' | 'table'>()
+  const [sidePanelKey, setSidePanelKey] = useState<'row' | 'column' | 'table' | 'schema'>()
   const [isDeleting, setIsDeleting] = useState<boolean>(false)
   const [isDuplicating, setIsDuplicating] = useState<boolean>(false)
-  const [selectedSchema, setSelectedSchema] = useState<string>('public')
+  const [selectedSchema, setSelectedSchema] = useState<string>('auth')
   const [selectedTableToEdit, setSelectedTableToEdit] = useState<PostgresTable>()
   const [selectedTableToDelete, setSelectedTableToDelete] = useState<PostgresTable>()
 
   const onAddTable = () => {
     setSidePanelKey('table')
+    setIsDuplicating(false)
+    setSelectedTableToEdit(undefined)
+  }
+
+  const onAddSchema = () => {
+    setSidePanelKey('schema')
     setIsDuplicating(false)
     setSelectedTableToEdit(undefined)
   }
@@ -69,6 +75,7 @@ const Editor: NextPage = () => {
       selectedSchema={selectedSchema}
       onSelectSchema={setSelectedSchema}
       onAddTable={onAddTable}
+      onAddSchema={onAddSchema}
       onEditTable={onEditTable}
       onDeleteTable={onDeleteTable}
       onDuplicateTable={onDuplicateTable}

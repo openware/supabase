@@ -16,7 +16,7 @@ const EmptyState: FC<Props> = ({ selectedSchema, onAddTable }) => {
     return (
       <div className="flex flex-col items-center justify-center space-y-4">
         <p className="text-sm">There are no tables available in this schema</p>
-        {selectedSchema === 'public' && <Button onClick={onAddTable}>Create a new table</Button>}
+        <Button onClick={onAddTable}>Create a new table</Button>
       </div>
     )
   }

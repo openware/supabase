@@ -10,6 +10,7 @@ import { ColumnField, CreateColumnPayload, UpdateColumnPayload } from './SidePan
 import ConfirmationModal from 'components/ui/ConfirmationModal'
 
 import { Modal } from '@supabase/ui'
+import SchemaEditor from './SchemaEditor/SchemaEditor'
 
 interface Props {
   selectedSchema: string
@@ -17,7 +18,7 @@ interface Props {
   selectedRowToEdit?: Dictionary<any>
   selectedColumnToEdit?: PostgresColumn
   selectedTableToEdit?: PostgresTable
-  sidePanelKey?: 'row' | 'column' | 'table'
+  sidePanelKey?: 'row' | 'column' | 'table' | 'schema'
   isDuplicating?: boolean
   closePanel: () => void
   onRowCreated?: (row: Dictionary<any>) => void
@@ -215,6 +216,27 @@ const SidePanelEditor: FC<Props> = ({
     resolve()
   }
 
+  const saveSchema = async (
+    payload: any,
+    resolve: any
+  ) => {
+    try {
+      const schema = await meta.createSchema(payload)
+
+      ui.setNotification({
+        id: payload.name,
+        category: 'success',
+        message: `Schema ${schema.name} is good to go!`,
+      })
+
+    } catch (error: any) {
+      ui.setNotification({ id: payload.name, category: 'error', message: error.message })
+    }
+
+    closePanel()
+    resolve()
+  }
+
   const onClosePanel = () => {
     if (isEdited) {
       setIsClosingPanel(true)
@@ -257,6 +279,11 @@ const SidePanelEditor: FC<Props> = ({
         closePanel={onClosePanel}
         saveChanges={saveTable}
         updateEditorDirty={() => setIsEdited(true)}
+      />
+      <SchemaEditor
+        visible={sidePanelKey === 'schema'}
+        closePanel={onClosePanel}
+        saveChanges={saveSchema}
       />
       <ConfirmationModal
         visible={isClosingPanel}

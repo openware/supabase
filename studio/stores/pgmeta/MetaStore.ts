@@ -97,6 +97,9 @@ export interface IMetaStore {
     columns: ColumnField[],
     importContent?: ImportContent
   ) => any
+  createSchema: (
+    payload: string
+  ) => any
   updateTable: (toastId: string, table: PostgresTable, payload: any, columns: ColumnField[]) => any
 }
 export default class MetaStore implements IMetaStore {
@@ -345,6 +348,16 @@ export default class MetaStore implements IMetaStore {
     }
 
     return duplicatedTable
+  }
+
+  async createSchema(
+    payload: any,
+  ) {
+    // Create the schema first
+    const schema: any = await this.schemas.create(payload)
+    if (schema.error) throw schema.error
+
+    return schema;
   }
 
   async createTable(

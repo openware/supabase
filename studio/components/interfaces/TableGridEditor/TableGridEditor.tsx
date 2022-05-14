@@ -20,7 +20,7 @@ interface Props {
   selectedTable: any // PostgresTable | SchemaView
 
   /** Determines what side panel editor to show */
-  sidePanelKey?: 'row' | 'column' | 'table'
+  sidePanelKey?: 'row' | 'column' | 'table' | 'schema'
   /** Toggles if we're duplicating a table */
   isDuplicating: boolean
   /** Selected entities if we're editting a row, column or table */
@@ -135,7 +135,7 @@ const TableGridEditor: FC<Props> = ({
         theme={theme}
         gridProps={{ height: '100%' }}
         storageRef={projectRef}
-        editable={!isViewSelected && selectedTable.schema === 'public'}
+        editable={!isViewSelected}
         schema={selectedTable.schema}
         table={gridTable}
         headerActions={

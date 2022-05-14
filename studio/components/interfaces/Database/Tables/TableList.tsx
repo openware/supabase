@@ -60,9 +60,9 @@ const TableList: FC<{
     const [filterString, setFilterString] = useState<string>('')
     const tables =
       filterString.length === 0
-        ? meta.tables.list((table: any) => table.schema === 'public')
+        ? meta.tables.list((table: any) => table.schema)
         : meta.tables.list(
-            (table: any) => table.schema === 'public' && table.name.includes(filterString)
+            (table: any) => table.schema && table.name.includes(filterString)
           )
 
     return (

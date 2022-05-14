@@ -26,7 +26,7 @@ const TableEditorPage: NextPage = () => {
   const [selectedColumnToDelete, setSelectedColumnToDelete] = useState<PostgresColumn>()
   const [selectedTableToDelete, setSelectedTableToDelete] = useState<PostgresTable>()
 
-  const [sidePanelKey, setSidePanelKey] = useState<'row' | 'column' | 'table'>()
+  const [sidePanelKey, setSidePanelKey] = useState<'row' | 'column' | 'table' | 'schema'>()
   const [selectedRowToEdit, setSelectedRowToEdit] = useState<Dictionary<any>>()
   const [selectedColumnToEdit, setSelectedColumnToEdit] = useState<PostgresColumn>()
   const [selectedTableToEdit, setSelectedTableToEdit] = useState<PostgresTable>()
@@ -70,6 +70,12 @@ const TableEditorPage: NextPage = () => {
 
   const onAddTable = () => {
     setSidePanelKey('table')
+    setIsDuplicating(false)
+    setSelectedTableToEdit(undefined)
+  }
+
+  const onAddSchema = () => {
+    setSidePanelKey('schema')
     setIsDuplicating(false)
     setSelectedTableToEdit(undefined)
   }
@@ -148,6 +154,7 @@ const TableEditorPage: NextPage = () => {
       selectedSchema={selectedSchema}
       onSelectSchema={setSelectedSchema}
       onAddTable={onAddTable}
+      onAddSchema={onAddSchema}
       onEditTable={onEditTable}
       onDeleteTable={onDeleteTable}
       onDuplicateTable={onDuplicateTable}

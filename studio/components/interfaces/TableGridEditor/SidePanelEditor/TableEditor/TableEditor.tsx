@@ -112,6 +112,7 @@ const TableEditor: FC<Props> = ({
       if (isEmpty(errors)) {
         const payload: CreateTablePayload | UpdateTablePayload = {
           name: tableFields.name,
+          schema: selectedSchema,
           comment: tableFields.comment,
           ...(!isNewRecord && { rls_enabled: tableFields.isRLSEnabled }),
         }
