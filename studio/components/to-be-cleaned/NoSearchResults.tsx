@@ -4,7 +4,7 @@ export const NoSearchResults = () => {
   return (
     <div className="flex h-64 flex-col items-center justify-center">
       <SVG
-        src="/img/no-search-results.svg"
+        src="/admin/img/no-search-results.svg"
         preProcessor={(code) =>
           code.replace(/svg/, 'svg className="mb-2 w-16 h-16 text-color-inherit"')
         }

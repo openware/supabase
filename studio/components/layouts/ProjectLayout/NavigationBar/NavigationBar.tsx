@@ -36,7 +36,7 @@ const NavigationBar: FC<Props> = ({}) => {
         <Link href={'/'}>
           <a className="block">
             <img
-              src="/img/supabase-logo.svg"
+              src="/admin/img/supabase-logo.svg"
               alt="Supabase"
               className="mx-auto h-[40px] w-6 cursor-pointer rounded"
             />

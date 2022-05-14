@@ -35,7 +35,7 @@ const Header: FC<any> = ({ organization, project }) => {
               <Link href="/">
                 <a>
                   <img
-                    src="/img/supabase-logo.svg"
+                    src="/admin/img/supabase-logo.svg"
                     alt="Supabase"
                     className="dark:border-dark rounded border p-1 hover:border-white"
                     style={{ height: 24 }}

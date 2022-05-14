@@ -10,6 +10,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 const nextConfig = {
+  basePath: "/admin",
   async redirects() {
     return [
       {
@@ -54,7 +55,7 @@ const nextConfig = {
         headers: [{ key: 'cache-control', value: 'max-age=2592000' }],
       },
       {
-        source: '/fonts/:slug*',
+        source: '/admin/fonts/:slug*',
         headers: [{ key: 'cache-control', value: 'max-age=2592000' }],
       },
     ]

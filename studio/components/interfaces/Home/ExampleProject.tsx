@@ -29,7 +29,7 @@ const ExampleProject: FC<Props> = ({ framework, title, description, url }) => {
           <div className="flex flex-col mr-4">
             <img
               className="transition-all group-hover:scale-110"
-              src={`/img/libraries/${framework.toLowerCase()}${
+              src={`/admin/img/libraries/${framework.toLowerCase()}${
                 framework.toLowerCase() == 'nextjs' ? (isDarkTheme ? '-dark' : '') : ''
               }-icon.svg`}
               alt={`${framework} logo`}
