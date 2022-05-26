@@ -38,15 +38,31 @@ Project settings are managed outside of the Dashboard. If you use docker-compose
 
 ### Developer Quickstart
 
+1. install a supabase CLI;
 ```bash
-# You'll need to be on Node v14
-# in /studio
-
-npm i # install deps
-npm run dev # start dev server
-npm run test # run tests
-npm run -- --watch # run tests in watch mode
+brew install supabase/tap/supabase
 ```
+2. install docker;
+3. start docker;
+4. supabase init
+5. supabase start
+6. update envs; file: .env
+```
+  STUDIO_PG_META_URL=${API URL}/pg
+  SUPABASE_ANON_KEY=anon key
+  SUPABASE_SERVICE_KEY=service_role key
+```
+7. install dependencies
+```bash
+  npm i
+```
+8. start dev server
+```
+  npm run dev
+```
+
+url: localhost:8082/admin
+
 
 ## Running within a self-hosted environment
 
