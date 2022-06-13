@@ -53,6 +53,11 @@ brew install supabase/tap/supabase
   SUPABASE_ANON_KEY=anon key
   SUPABASE_SERVICE_KEY=service_role key
 ```
+
+also update `SUPABASE_URL` - use `API URL` but without `http://` part, for example:
+```
+  SUPABASE_URL=localhost:54321
+```
 7. install dependencies
 ```bash
   npm i
@@ -64,6 +69,21 @@ brew install supabase/tap/supabase
 
 url: localhost:8082/admin
 
+### Enable Storage and platform features
+
+To enable Storage page (and platform other features) please add these variables to the `.env` file:
+```
+  NEXT_PUBLIC_IS_PLATFORM=true
+  READ_ONLY_URL=${API URL}/pg
+  READ_ONLY_API_KEY=service_role key
+```
+
+To make Storage work locally please change `https` to `http` in [`StorageExplorerStore.js`](/studio/localStores/storageExplorer/StorageExplorerStore.js#L100) file in `initializeSupabaseClient` method:
+```
+  ...
+  this.supabaseClient = createClient(`http://${serviceEndpoint}`, serviceKey, {
+  ...
+```
 
 ## Running within a self-hosted environment
 
