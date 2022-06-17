@@ -49,6 +49,7 @@ brew install supabase/tap/supabase
 6. update envs; file: .env
 ```
   STUDIO_PG_META_URL=${API URL}/pg
+  SUPABASE_REST_URL=${API URL}/rest/v1/
   SUPABASE_ANON_KEY=anon key
   SUPABASE_SERVICE_KEY=service_role key
 ```
