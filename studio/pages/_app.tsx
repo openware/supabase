@@ -16,6 +16,7 @@ import { RootStore } from 'stores'
 import { StoreProvider } from 'hooks'
 import { getParameterByName } from 'lib/common/fetch'
 import { GOTRUE_ERRORS } from 'lib/constants'
+import { CoreProvider } from '@openware/opendax-web-sdk';
 
 import { PortalToast, GoTrueWrapper, RouteValidationWrapper } from 'components/interfaces/App'
 import PageTelemetry from 'components/ui/PageTelemetry'
@@ -47,7 +48,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <GoTrueWrapper>
           <PageTelemetry>
             <RouteValidationWrapper>
-              <Component {...pageProps} />
+              <CoreProvider>
+                <Component {...pageProps} />
+              </CoreProvider>
             </RouteValidationWrapper>
           </PageTelemetry>
         </GoTrueWrapper>

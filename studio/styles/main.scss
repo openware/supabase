@@ -185,6 +185,6 @@ div[data-radix-portal]:not(.portal--toast) {
   }
 }
 
-div.fixed.inset-0 {
+div:not([id*="headlessui-dialog"]).fixed.inset-0 {
   z-index: 11 !important;
 }

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { observer } from 'mobx-react-lite'
 import { Button, IconGitHub, Typography } from '@supabase/ui'
+import { AccountButtonWidget } from '@openware/opendax-web-sdk';
 
 import { useStore } from 'hooks'
 import { auth } from 'lib/gotrue'
@@ -56,6 +57,7 @@ const Landing = () => {
             <Button onClick={handleGithubSignIn} icon={<IconGitHub />}>
               Sign In with GitHub
             </Button>
+            <AccountButtonWidget />
           </div>
         </nav>
       </div>
