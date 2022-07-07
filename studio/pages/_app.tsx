@@ -16,7 +16,9 @@ import { RootStore } from 'stores'
 import { StoreProvider } from 'hooks'
 import { getParameterByName } from 'lib/common/fetch'
 import { GOTRUE_ERRORS } from 'lib/constants'
-import { CoreProvider } from '@openware/opendax-web-sdk';
+import { GoTrueAuthProvider } from '../provider/GoTrueAuthProvider';
+import { Web3ReactProvider } from '@web3-react/core';
+import { ethers } from 'ethers';
 
 import { PortalToast, GoTrueWrapper, RouteValidationWrapper } from 'components/interfaces/App'
 import PageTelemetry from 'components/ui/PageTelemetry'
@@ -37,6 +39,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, [])
 
+  function getLibrary(provider: any): ethers.providers.Web3Provider {
+    const library = new ethers.providers.Web3Provider(provider, 'any');
+    library.pollingInterval = 12000;
+    return library;
+}
+
   return (
     <StoreProvider rootStore={rootStore}>
       <FlagProvider>
@@ -48,9 +56,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         <GoTrueWrapper>
           <PageTelemetry>
             <RouteValidationWrapper>
-              <CoreProvider>
-                <Component {...pageProps} />
-              </CoreProvider>
+              <Web3ReactProvider getLibrary={getLibrary}>
+                <GoTrueAuthProvider>
+                    <Component {...pageProps} />
+                </GoTrueAuthProvider>
+              </Web3ReactProvider>
             </RouteValidationWrapper>
           </PageTelemetry>
         </GoTrueWrapper>

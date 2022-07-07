@@ -38,6 +38,7 @@ export function withAuth(
 
     useEffect(() => {
       // this should run before redirecting
+      console.log('withAuth.tsx')
       if (!isLoading) {
         if (!profile) {
           ui.setProfile(undefined)

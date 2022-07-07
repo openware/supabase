@@ -138,6 +138,9 @@ module.exports = ui({
         },
       }),
       colors: {
+        'primary-cta-color-60': 'hsla(154, 55%, 45%, 1)',
+        'primary-cta-color-80': 'hsla(153, 60%, 53%, 1)',
+        'primary-cta-color-90': 'hsla(153, 60%, 53%, 1)',
         // gray: { ...gray },
         // green: { ...green },
         blueGray: { ...blueGray },

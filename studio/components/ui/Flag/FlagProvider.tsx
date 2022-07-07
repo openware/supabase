@@ -27,7 +27,7 @@ const FlagProvider: FC = ({ children }) => {
       setStore(flagStore)
     }
 
-    const client = createConfigCatClient(process.env.NEXT_PUBLIC_CONFIGCAT_SDK_KEY ?? '', {
+    const client = createConfigCatClient('EmDaCC1NsEOB272eIVVaHg/xOcEawfONEyWD_PCsUg51g', {
       configChanged: setFlagValues,
       pollIntervalSeconds: 600,
     })

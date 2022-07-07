@@ -17,6 +17,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
 const handleGetAll = async (req: NextApiRequest, res: NextApiResponse) => {
   // Platform specific endpoint
+    // TODO: DB connection
   const response = {
     project: {
       cloud_provider: 'AWS',
