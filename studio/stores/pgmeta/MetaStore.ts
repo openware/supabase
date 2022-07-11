@@ -139,10 +139,10 @@ export default class MetaStore implements IMetaStore {
     this.queryBaseUrl = `${API_URL}/pg-meta/${projectRef}`
 
     const headers: any = {}
-    if (IS_PLATFORM && connectionString) {
-      this.connectionString = connectionString
-      headers['x-connection-encrypted'] = connectionString
-    }
+    // if (IS_PLATFORM && connectionString) {
+    //   this.connectionString = connectionString
+    //   headers['x-connection-encrypted'] = connectionString
+    // }
 
     this.openApi = new OpenApiStore(rootStore, `${API_URL}/props/project/${projectRef}/api`)
     this.tables = new TableStore(rootStore, `${this.baseUrl}/tables`, headers)

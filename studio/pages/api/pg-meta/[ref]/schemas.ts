@@ -27,10 +27,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
 const handleGetAll = async (req: NextApiRequest, res: NextApiResponse) => {
   const headers = constructHeaders(req.headers)
+  console.log(headers)
   let response = await get(`${PG_META_URL}/schemas`, {
     headers,
   })
   if (response.error) {
+    console.log('shemas get:', response.error)
     return res.status(400).json({ error: response.error })
   }
   return res.status(200).json(response)

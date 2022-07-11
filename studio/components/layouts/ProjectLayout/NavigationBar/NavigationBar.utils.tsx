@@ -14,6 +14,18 @@ import { Route } from 'components/ui/ui.types'
 export const generateProductRoutes = (ref: string): Route[] => {
   return [
     {
+      key: 'markets',
+      label: 'Markets',
+      icon: (
+        <SVG
+          src="/admin/img/table-editor.svg"
+          style={{ width: `${18}px`, height: `${18}px` }}
+          preProcessor={(code) => code.replace(/svg/, 'svg class="m-auto text-color-inherit"')}
+        />
+      ),
+      link: `/project/${ref}/markets`,
+    },
+    {
       key: 'editor',
       label: 'Table Editor',
       icon: (

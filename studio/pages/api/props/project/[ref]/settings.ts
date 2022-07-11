@@ -22,7 +22,7 @@ const handleGetAll = async (req: NextApiRequest, res: NextApiResponse) => {
     project: {
       cloud_provider: 'AWS',
       db_dns_name: '-',
-      db_host: 'localhost',
+      db_host: 'db',
       db_name: 'postgres',
       db_port: 5432,
       db_ssl: false,

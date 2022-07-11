@@ -29,7 +29,7 @@ const handleGetAll = async (req: NextApiRequest, res: NextApiResponse) => {
       region: 'local',
       connectionString: createDbConnectionString({
         db_user_supabase: 'postgres',
-        db_host: 'localhost',
+        db_host: 'db',
         db_pass_supabase: process.env.POSTGRES_PASSWORD as string,
         db_port: 5432,
         db_name: 'postgres',
