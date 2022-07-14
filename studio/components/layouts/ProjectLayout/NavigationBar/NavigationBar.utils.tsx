@@ -21,6 +21,19 @@ export const generateProductRoutes = (ref: string, project?: ProjectBase): Route
   const buildingUrl = `/project/${ref}/building`
 
   return [
+    // TODO: new navbar
+    // {
+    //   key: 'assets',
+    //   label: 'Assets and Tokens',
+    //   icon: (
+    //     <SVG
+    //       src="/admin/img/assets.svg"
+    //       style={{ width: `${18}px`, height: `${18}px` }}
+    //       preProcessor={(code) => code.replace(/svg/, 'svg class="m-auto text-color-inherit"')}
+    //     />
+    //   ),
+    //   link: isProjectBuilding ? buildingUrl : `/project/${ref}/assets`,
+    // },
     {
       key: 'editor',
       label: 'Table Editor',
