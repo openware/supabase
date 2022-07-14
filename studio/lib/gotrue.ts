@@ -1,36 +1,41 @@
-import { GoTrueClient, User } from '@supabase/gotrue-js'
+import { GoTrueClient } from '@supabase/gotrue-js'
+import axios from 'axios'
 
-export const GOTRUE_URL =
-  process.env.NEXT_PUBLIC_GOTRUE_URL || `${process.env.SUPABASE_URL}/auth/v1`
+export const GOTRUE_URL = process.env.NEXT_PUBLIC_GOTRUE_URL || `${process.env.SUPABASE_URL}/auth/v1`
 
 export const auth = new GoTrueClient({
   url: GOTRUE_URL,
   autoRefreshToken: true,
 })
 
+const fetchUser = async (accessToken: string) => {
+  let url = `${process.env.NEXT_PUBLIC_GOTRUE_URL}/user`
+
+  return await axios.get(
+      url,
+      {
+          headers: {
+            "Authorization": `Bearer ${accessToken}`, apikey: process.env.NEXT_PUBLIC_GOTRUE_ANON_KEY
+          },
+      }).then((res: any) => {
+          return res.data
+      }).catch(err => {
+          const resp = err.request?.response
+
+          return {
+              code: resp?.code,
+              msg: resp?.msg,
+          };
+      });
+}
+
+
 export const getAuthUser = async (token: String): Promise<any> => {
   try {
-    const { data: user, error } = await auth.api.getUser(token.replace('Bearer ', ''))
-    if (error) throw error
+    const user = await fetchUser(String(token));
 
     return { user, error: null }
   } catch (err) {
-    console.log(err)
     return { user: null, error: err }
-  }
-}
-
-export const getAuth0Id = (provider: String, providerId: String): String => {
-  return `${provider}|${providerId}`
-}
-
-export const getIdentity = (gotrueUser: User) => {
-  try {
-    if (gotrueUser !== undefined && gotrueUser.identities !== undefined) {
-      return { identity: gotrueUser.identities[0], error: null }
-    }
-    throw 'Missing identity'
-  } catch (err) {
-    return { identity: null, error: err }
   }
 }

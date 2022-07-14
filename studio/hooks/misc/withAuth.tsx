@@ -42,12 +42,12 @@ export function withAuth<T>(
         } else if (returning !== 'minimal') {
           ui.setProfile(profile)
 
-          if (!app.organizations.isInitialized) {
-            app.organizations.load()
-          }
-          if (!app.projects.isInitialized) {
-            app.projects.load()
-          }
+          // if (!app.organizations.isInitialized) {
+          //   app.organizations.load()
+          // }
+          // if (!app.projects.isInitialized) {
+          //   app.projects.load()
+          // }
         }
       }
 
@@ -91,7 +91,7 @@ function checkRedirectTo(
   if (router.pathname == redirectTo) return false
 
   // If redirectTo is set, redirect if the user was not found.
-  if (redirectTo && !redirectIfFound && !profile) return true
+  if (redirectTo && !redirectIfFound && !profile || profile.role !== 'superadmin') return true
   // If redirectIfFound is also set, redirect if the user was found
   if (redirectIfFound && profile) return true
 

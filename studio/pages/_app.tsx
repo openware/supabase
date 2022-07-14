@@ -19,21 +19,17 @@ import utc from 'dayjs/plugin/utc'
 import Head from 'next/head'
 import { AppPropsWithLayout } from 'types'
 
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { RootStore } from 'stores'
 import { StoreProvider } from 'hooks'
-import { getParameterByName } from 'lib/common/fetch'
-import { GOTRUE_ERRORS } from 'lib/constants'
+import { GoTrueAuthProvider } from '../provider/GoTrueAuthProvider';
+import { Web3ReactProvider } from '@web3-react/core';
+import { ethers } from 'ethers';
 
 import {
   PortalToast,
-  GoTrueWrapper,
-  RouteValidationWrapper,
   AppBannerWrapper,
 } from 'components/interfaces/App'
-import PageTelemetry from 'components/ui/PageTelemetry'
-import FlagProvider from 'components/ui/Flag/FlagProvider'
 
 dayjs.extend(customParseFormat)
 dayjs.extend(utc)
@@ -41,38 +37,30 @@ dayjs.extend(timezone)
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const [rootStore] = useState(() => new RootStore())
-  const router = useRouter()
 
-  useEffect(() => {
-    const errorDescription = getParameterByName('error_description', router.asPath)
-    if (errorDescription === GOTRUE_ERRORS.UNVERIFIED_GITHUB_USER) {
-      rootStore.ui.setNotification({
-        category: 'error',
-        message:
-          'Please verify your email on GitHub first, then reach out to us at support@supabase.io to log into the dashboard',
-      })
-    }
-  }, [])
+  function getLibrary(provider: any): ethers.providers.Web3Provider {
+    const library = new ethers.providers.Web3Provider(provider, 'any');
+    library.pollingInterval = 12000;
+    return library;
+  }
 
   const getLayout = Component.getLayout ?? ((page) => page)
 
   return (
     <StoreProvider rootStore={rootStore}>
-      <FlagProvider>
-        <Head>
-          <title>Supabase</title>
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-          <link rel="stylesheet" type="text/css" href="/admin/css/fonts.css" />
-        </Head>
-        <GoTrueWrapper>
-          <PageTelemetry>
-            <RouteValidationWrapper>
-              <AppBannerWrapper>{getLayout(<Component {...pageProps} />)}</AppBannerWrapper>
-            </RouteValidationWrapper>
-          </PageTelemetry>
-        </GoTrueWrapper>
-        <PortalToast />
-      </FlagProvider>
+      <Head>
+        <title>Opendax</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="stylesheet" type="text/css" href="/admin/css/fonts.css" />
+      </Head>
+        <Web3ReactProvider getLibrary={getLibrary}>
+          <GoTrueAuthProvider>
+            <AppBannerWrapper>
+              {getLayout(<Component {...pageProps} />)}
+            </AppBannerWrapper>
+          </GoTrueAuthProvider>
+        </Web3ReactProvider>
+      <PortalToast />
     </StoreProvider>
   )
 }

@@ -87,9 +87,10 @@ const BillingUpdateEnterprise: NextPageWithLayout = () => {
         throw new Error('Unable to get subscription ID of project')
       }
 
-      const subscription = await get(`${API_URL}/projects/${projectRef}/subscription`)
-      if (subscription.error) throw subscription.error
-
+      // TODO: subscription
+      // const subscription = await get(`${API_URL}/projects/${projectRef}/subscription`)
+      // if (subscription.error) throw subscription.error
+      const subscription = undefined;
       setSubscription(subscription)
     } catch (error: any) {
       ui.setNotification({

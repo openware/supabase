@@ -155,16 +155,12 @@ export default class MetaStore implements IMetaStore {
   ]
 
   constructor(rootStore: IRootStore, options: { projectRef: string; connectionString: string }) {
-    const { projectRef, connectionString } = options
+    const { projectRef } = options
     this.rootStore = rootStore
     this.projectRef = projectRef
     this.baseUrl = `${API_URL}/pg-meta/${projectRef}`
 
     const headers: any = {}
-    if (IS_PLATFORM && connectionString) {
-      this.connectionString = connectionString
-      headers['x-connection-encrypted'] = connectionString
-    }
 
     this.openApi = new OpenApiStore(rootStore, `${API_URL}/props/project/${projectRef}/api`)
     this.tables = new TableStore(rootStore, `${this.baseUrl}/tables`, headers)
@@ -193,7 +189,7 @@ export default class MetaStore implements IMetaStore {
   async query(value: string) {
     try {
       const headers: any = { 'Content-Type': 'application/json' }
-      if (this.connectionString) headers['x-connection-encrypted'] = this.connectionString
+      // if (this.connectionString) headers['x-connection-encrypted'] = this.connectionString
       const url = `${this.baseUrl}/query`
       const response = await post(url, { query: value }, { headers })
       if (response.error) throw response.error
@@ -207,7 +203,7 @@ export default class MetaStore implements IMetaStore {
   async validateQuery(value: string) {
     try {
       const headers: any = { 'Content-Type': 'application/json' }
-      if (this.connectionString) headers['x-connection-encrypted'] = this.connectionString
+      // if (this.connectionString) headers['x-connection-encrypted'] = this.connectionString
       const url = `${this.baseUrl}/query/validate`
       const response = await post(url, { query: value }, { headers })
       if (response.error) throw response.error
@@ -221,7 +217,7 @@ export default class MetaStore implements IMetaStore {
   async formatQuery(value: string) {
     try {
       const headers: any = { 'Content-Type': 'application/json' }
-      if (this.connectionString) headers['x-connection-encrypted'] = this.connectionString
+      // if (this.connectionString) headers['x-connection-encrypted'] = this.connectionString
       const url = `${this.baseUrl}/query/format`
       const response = await post(url, { query: value }, { headers })
       if (response.error) throw response.error

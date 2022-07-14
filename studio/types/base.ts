@@ -36,15 +36,28 @@ export interface Project extends ProjectBase {
   postgrestStatus?: 'ONLINE' | 'OFFLINE'
 }
 
-export interface User {
-  id: number
-  mobile: string
-  primary_email: string
-  username: string
-  first_name: string
-  last_name: string
-  is_alpha_user: boolean
-  free_project_limit: number
+export interface UserGoTRUE {
+  aud?: string
+  created_at: string
+  email: string
+  email_change_confirm_status: number
+  last_sign_in_at: string
+  phone: string
+  role: string
+  updated_at: string
+  app_metadata?: any
+  user_metadata?: any
+}
+
+export interface User extends UserGoTRUE {
+  id: string
+  mobile?: string
+  primary_email?: string
+  username?: string
+  first_name?: string
+  last_name?: string
+  is_alpha_user?: boolean
+  free_project_limit?: number
 }
 
 export interface Member {

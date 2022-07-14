@@ -53,9 +53,6 @@ const HooksPage: NextPageWithLayout = () => {
   }
 
   const enableHooksForProject = async () => {
-    const headers: any = {}
-    const connectionString = ui.selectedProject?.connectionString
-    if (connectionString) headers['x-connection-encrypted'] = connectionString
     try {
       await post(`${API_URL}/database/${ref}/hook-enable`, {})
       setHooksEnabled(true)
