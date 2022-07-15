@@ -14,7 +14,7 @@ export function useOptimisticSqlSnippetCreate() {
       // get currently selected tab id in case we need to roll back to it
       const previouslySelectedTabId = sqlEditorStore.selectedTabId
 
-      const snippet = createSqlSnippetSkeleton({ owner_id: user?.id, ...args })
+      const snippet = createSqlSnippetSkeleton({ owner_id: Number(user?.id), ...args })
 
       // save the snippet in memory in the content store with a client-generated id
       const { data } = contentStore.createOptimistically(snippet)

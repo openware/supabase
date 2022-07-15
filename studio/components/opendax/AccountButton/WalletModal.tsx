@@ -1,6 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon, InformationCircleIcon } from '@heroicons/react/solid'
 import MetaMaskOnboarding from '@metamask/onboarding'
+// @ts-ignore
 import classNames from 'classnames'
 import type { ProviderWhitelist } from '../../../hooks/web3/useDApp'
 import Link from 'next/link'

@@ -20,7 +20,7 @@ const FlagProvider: FC = ({ children }) => {
     const setFlagValues = async () => {
       const flagValues =
         user !== undefined
-          ? await client.getAllValuesAsync({ identifier: user.primary_email })
+          ? await client.getAllValuesAsync({ identifier: user.primary_email || '' })
           : await client.getAllValuesAsync()
       const flagStore: any = {}
 
