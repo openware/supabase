@@ -38,9 +38,7 @@ export default class AppStore implements IAppStore {
     const headers: any = {}
 
     this.projects = new ProjectStore(rootStore, `${this.baseUrl}/projects`, headers)
-    console.log('projects', this.projects)
     this.organizations = new OrganizationStore(rootStore, `${this.baseUrl}/organizations`, headers)
-    console.log('org', this.organizations)
     this.database = new DatabaseStore(rootStore, `${this.baseUrl}/database`, headers)
   }
 

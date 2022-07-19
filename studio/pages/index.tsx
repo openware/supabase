@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
+import { toJS } from 'mobx'
 
 import { NextPageWithLayout } from 'types'
 import { useStore, withAuth } from 'hooks'
@@ -43,32 +44,34 @@ const UnauthorizedLanding = () => {
   return <Landing />
 }
 
-const IndexLayout = observer(({ children }) => {
-  const { ui } = useStore()
-  const { profile } = ui
-  const router = useRouter()
-
-  useEffect(() => {
-    if (profile && profile.role === 'superadmin') {
-      router.push('/project/default')
+const IndexLayout = withAuth(
+  observer(({ children }) => {
+    const { ui } = useStore()
+    const router = useRouter()
+    const profile = toJS(ui.profile)
+  
+    useEffect(() => {
+      if (profile && profile.role === 'superadmin') {
+        router.push('/project/default')
+      }
+    }, [profile])
+  
+    if (!profile || profile.role !== 'superadmin') {
+      return <UnauthorizedLanding />
     }
-  }, [profile])
-
-  if (!profile || profile.role !== 'superadmin') {
-    return <UnauthorizedLanding />
-  }
-
-  return (
-    <AccountLayoutWithoutAuth
-      title="Opendax"
-      breadcrumbs={[
-        {
-          key: `opendax-projects`,
-          label: 'Projects',
-        },
-      ]}
-    >
-      {children}
-    </AccountLayoutWithoutAuth>
-  )
-})
+  
+    return (
+      <AccountLayoutWithoutAuth
+        title="Opendax"
+        breadcrumbs={[
+          {
+            key: `opendax-projects`,
+            label: 'Projects',
+          },
+        ]}
+      >
+        {children}
+      </AccountLayoutWithoutAuth>
+    )
+  })
+)

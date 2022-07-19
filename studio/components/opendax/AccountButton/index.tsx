@@ -107,8 +107,6 @@ export const AccountButtonWidget: FC<AccountButtonWidgetProps> = ({
         return null
     }
 
-    console.log(account)
-
     if (!user?.id || !active) {
         return (
             <>

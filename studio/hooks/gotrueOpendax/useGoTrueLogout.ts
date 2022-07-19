@@ -12,7 +12,7 @@ export const useGoTrueLogout = async () => {
         }
     }).then((response: any) => {
         localStorage && localStorage.removeItem('session');
-        if (process.env.NEXT_PUBLIC_IS_DEV_MODE ) {
+        if (process.env.NEXT_PUBLIC_IS_DEV_MODE) {
             document.cookie = 'sb-access-token=; Max-Age=0'
         }
     }).catch(err => {

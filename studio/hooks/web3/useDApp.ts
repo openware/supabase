@@ -126,7 +126,6 @@ export default function useDApp() {
       }
     }
 
-    localStorage.removeItem('APP_CONNECT_CACHED_PROVIDER');
     useGoTrueLogout();
   }, [connector, connectorInfo])
 

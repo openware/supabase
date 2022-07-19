@@ -14,23 +14,23 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/project/:ref/auth',
-        destination: '/project/:ref/auth/users',
+        source: '/admin/project/:ref/auth',
+        destination: '/admin/project/:ref/auth/users',
         permanent: true,
       },
       {
-        source: '/project/:ref/database',
-        destination: '/project/:ref/database/tables',
+        source: '/admin/project/:ref/database',
+        destination: '/admin/project/:ref/database/tables',
         permanent: true,
       },
       {
-        source: '/project/:ref/storage',
-        destination: '/project/:ref/storage/buckets',
+        source: '/admin/project/:ref/storage',
+        destination: '/admin/project/:ref/storage/buckets',
         permanent: true,
       },
       {
-        source: '/project/:ref/settings',
-        destination: '/project/:ref/settings/general',
+        source: '/admin/project/:ref/settings',
+        destination: '/admin/project/:ref/settings/general',
         permanent: true,
       },
     ]

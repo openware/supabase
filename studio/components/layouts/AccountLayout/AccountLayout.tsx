@@ -26,8 +26,10 @@ const AccountLayout = ({ children, title, breadcrumbs }: any) => {
 
   const onClickLogout = async () => {
     disconnect()
-    ui.setProfile(EMPTY_USER)
-    router.reload()
+    ui.setProfile(undefined)
+    localStorage.removeItem('APP_CONNECT_CACHED_PROVIDER');
+    localStorage && localStorage.removeItem('session');
+    router.push('/')
   }
 
   const baseLogoutLink = {
