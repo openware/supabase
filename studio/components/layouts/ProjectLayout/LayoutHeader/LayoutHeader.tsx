@@ -1,14 +1,14 @@
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 
-import { IS_PLATFORM } from 'lib/constants'
+// import { IS_PLATFORM } from 'lib/constants'
 import { useStore } from 'hooks'
 import BreadcrumbsView from './BreadcrumbsView'
 import OrgDropdown from './OrgDropdown'
 import ProjectDropdown from './ProjectDropdown'
-import FeedbackDropdown from './FeedbackDropdown'
-import HelpPopover from './HelpPopover'
-import NotificationsPopover from './NotificationsPopover'
+// import FeedbackDropdown from './FeedbackDropdown'
+// import HelpPopover from './HelpPopover'
+// import NotificationsPopover from './NotificationsPopover'
 
 const LayoutHeader = ({ customHeaderComponents, breadcrumbs = [], headerBorder = true }: any) => {
   const { ui } = useStore()
@@ -64,9 +64,9 @@ const LayoutHeader = ({ customHeaderComponents, breadcrumbs = [], headerBorder =
       </div>
       <div className="flex items-center space-x-2">
         {customHeaderComponents && customHeaderComponents}
-        {IS_PLATFORM && <HelpPopover />}
-        {IS_PLATFORM && <FeedbackDropdown />}
-        {IS_PLATFORM && <NotificationsPopover />}
+        {/* {IS_PLATFORM && <HelpPopover />} */}
+        {/* {IS_PLATFORM && <FeedbackDropdown />} */}
+        {/* {IS_PLATFORM && <NotificationsPopover />} */}
       </div>
     </div>
     // </div>

@@ -16,7 +16,6 @@ export function constructHeaders(headers: { [prop: string]: any }) {
       Accept: headers.Accept,
       Authorization: headers.Authorization,
       'Content-Type': headers['Content-Type'],
-      'x-connection-encrypted': headers['x-connection-encrypted'],
     } as any
     // clean up key with underfined value
     Object.keys(cleansedHeaders).forEach((key) =>
@@ -25,7 +24,7 @@ export function constructHeaders(headers: { [prop: string]: any }) {
     return {
       ...cleansedHeaders,
       ...(IS_PLATFORM
-        ? { apiKey: `${process.env.READ_ONLY_API_KEY}` }
+        ? { apiKey: `${process.env.SUPABASE_SERVICE_KEY}` }
         : { apiKey: `${process.env.SUPABASE_SERVICE_KEY}` }),
     }
   } else {

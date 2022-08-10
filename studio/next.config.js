@@ -14,23 +14,23 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/project/:ref/auth',
-        destination: '/project/:ref/auth/users',
+        source: '/admin/project/:ref/auth',
+        destination: '/admin/project/:ref/auth/users',
         permanent: true,
       },
       {
-        source: '/project/:ref/database',
-        destination: '/project/:ref/database/tables',
+        source: '/admin/project/:ref/database',
+        destination: '/admin/project/:ref/database/tables',
         permanent: true,
       },
       {
-        source: '/project/:ref/storage',
-        destination: '/project/:ref/storage/buckets',
+        source: '/admin/project/:ref/storage',
+        destination: '/admin/project/:ref/storage/buckets',
         permanent: true,
       },
       {
-        source: '/project/:ref/settings',
-        destination: '/project/:ref/settings/general',
+        source: '/admin/project/:ref/settings',
+        destination: '/admin/project/:ref/settings/general',
         permanent: true,
       },
     ]
@@ -83,7 +83,4 @@ const sentryWebpackPluginOptions = {
 
 // Make sure adding Sentry options is the last code to run before exporting, to
 // ensure that your source maps include changes from all other Webpack plugins
-module.exports =
-  process.env.NEXT_PUBLIC_IS_PLATFORM === 'true'
-    ? withSentryConfig(moduleExports, sentryWebpackPluginOptions)
-    : nextConfig
+module.exports = nextConfig

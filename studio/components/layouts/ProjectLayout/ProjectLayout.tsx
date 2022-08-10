@@ -116,7 +116,7 @@ const ContentWrapper: FC<ContentWrapperProps> = observer(({ isLoading, children 
 
   return (
     <>
-      {isLoading || ui.selectedProject === undefined ? (
+      {/* {isLoading || ui.selectedProject === undefined ? (
         <Connecting />
       ) : isProjectPausing ? (
         <PausingState project={ui.selectedProject} />
@@ -124,9 +124,9 @@ const ContentWrapper: FC<ContentWrapperProps> = observer(({ isLoading, children 
         <ConnectingState project={ui.selectedProject} />
       ) : requiresDbConnection && isProjectBuilding ? (
         <BuildingState project={ui.selectedProject} />
-      ) : (
+      ) : ( */}
         <>{children}</>
-      )}
+      {/* )} */}
     </>
   )
 })

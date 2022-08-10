@@ -1,0 +1,105 @@
+:root {
+  --app-main-background-color: var(--main-background-color);
+  --app-navbar-color: var(--navbar-color);
+  --app-text-color: var(--text-color);
+  --app-primary-cta-color: var(--primary-cta-color);
+  --app-secondary-cta-color: var(--secondary-cta-color);
+
+  // Advanced colors
+  // BACKGROUND COLORS
+  --app-subheader-background-color: var(--subheader-background-color);
+  --app-body-background-color: var(--body-background-color);
+  --app-input-background-color: var(--input-background-color);
+  --app-dropdown-background-color: var(--dropdown-background-color);
+  --app-shadow-color: var(--shadow-color);
+  --app-navbar-background-color: var(--navbar-background-color);
+  --app-footer-background-color: var(--footer-background-color);
+
+  // SIDEBAR COLORS
+  --app-navbar-control-layer-color-10: var(--navbar-control-layer-color-10);
+  --app-navbar-control-layer-color-20: var(--navbar-control-layer-color-20);
+  --app-navbar-control-layer-color-40: var(--navbar-control-layer-color-40);
+  --app-navbar-control-layer-color-60: var(--navbar-control-layer-color-60);
+  --app-navbar-control-layer-color-80: var(--navbar-control-layer-color-80);
+  --app-navbar-control-layer-color-90: var(--navbar-control-layer-color-90);
+
+  --app-navbar-control-bg-color-10: var(--navbar-control-bg-color-10);
+  --app-navbar-control-bg-color-20: var(--navbar-control-bg-color-20);
+  --app-navbar-control-bg-color-40: var(--navbar-control-bg-color-40);
+  --app-navbar-control-bg-color-60: var(--navbar-control-bg-color-60);
+  --app-navbar-control-bg-color-80: var(--navbar-control-bg-color-80);
+  --app-navbar-control-bg-color-90: var(--navbar-control-bg-color-90);
+
+  // TEXT COLORS
+  --app-text-color-0: var(--text-color-0);
+  --app-text-color-10: var(--text-color-10);
+  --app-text-color-20: var(--text-color-20);
+  --app-text-color-30: var(--text-color-30);
+  --app-text-color-40: var(--text-color-40);
+  --app-text-color-50: var(--text-color-50);
+  --app-text-color-60: var(--text-color-60);
+  --app-text-color-70: var(--text-color-70);
+  --app-text-color-80: var(--text-color-80);
+  --app-text-color-90: var(--text-color-90);
+  --app-text-color-100: var(--text-color-100);
+
+  --app-neutral-control-color-0: var(--neutral-control-color-0);
+  --app-neutral-control-color-10: var(--neutral-control-color-10);
+  --app-neutral-control-color-20: var(--neutral-control-color-20);
+  --app-neutral-control-color-30: var(--neutral-control-color-30);
+  --app-neutral-control-color-40: var(--neutral-control-color-40);
+  --app-neutral-control-color-50: var(--neutral-control-color-50);
+  --app-neutral-control-color-60: var(--neutral-control-color-60);
+  --app-neutral-control-color-70: var(--neutral-control-color-70);
+  --app-neutral-control-color-80: var(--neutral-control-color-80);
+  --app-neutral-control-color-90: var(--neutral-control-color-90);
+  --app-neutral-control-color-100: var(--neutral-control-color-100);
+
+  --app-neutral-control-layer-color-0: var(--neutral-control-layer-color-0);
+  --app-neutral-control-layer-color-10: var(--neutral-control-layer-color-10);
+  --app-neutral-control-layer-color-20: var(--neutral-control-layer-color-20);
+  --app-neutral-control-layer-color-30: var(--neutral-control-layer-color-30);
+  --app-neutral-control-layer-color-40: var(--neutral-control-layer-color-40);
+  --app-neutral-control-layer-color-50: var(--neutral-control-layer-color-50);
+  --app-neutral-control-layer-color-60: var(--neutral-control-layer-color-60);
+  --app-neutral-control-layer-color-70: var(--neutral-control-layer-color-70);
+  --app-neutral-control-layer-color-80: var(--neutral-control-layer-color-80);
+  --app-neutral-control-layer-color-90: var(--neutral-control-layer-color-90);
+  --app-neutral-control-layer-color-100: var(--neutral-control-layer-color-100);
+
+  --app-divider-color-10: var(--divider-color-10);
+  --app-divider-color-20: var(--divider-color-20);
+  --app-divider-color-40: var(--divider-color-40);
+  --app-divider-color-60: var(--divider-color-60);
+  --app-divider-color-80: var(--divider-color-80);
+  --app-divider-color-90: var(--divider-color-90);
+
+  // CTA COLORS
+  --app-primary-cta-color-10: var(--primary-cta-color-10);
+  --app-primary-cta-color-20: var(--primary-cta-color-20);
+  --app-primary-cta-color-40: var(--primary-cta-color-40);
+  --app-primary-cta-color-60: var(--primary-cta-color-60);
+  --app-primary-cta-color-80: var(--primary-cta-color-80);
+  --app-primary-cta-color-90: var(--primary-cta-color-90);
+  
+  --app-primary-cta-layer-color-10: var(--primary-cta-layer-color-10);
+  --app-primary-cta-layer-color-20: var(--primary-cta-layer-color-20);
+  --app-primary-cta-layer-color-40: var(--primary-cta-layer-color-40);
+  --app-primary-cta-layer-color-60: var(--primary-cta-layer-color-60);
+  --app-primary-cta-layer-color-80: var(--primary-cta-layer-color-80);
+  --app-primary-cta-layer-color-90: var(--primary-cta-layer-color-90);
+
+  --app-secondary-cta-color-10: var(--secondary-cta-color-10);
+  --app-secondary-cta-color-20: var(--secondary-cta-color-20);
+  --app-secondary-cta-color-40: var(--secondary-cta-color-40);
+  --app-secondary-cta-color-60: var(--secondary-cta-color-60);
+  --app-secondary-cta-color-80: var(--secondary-cta-color-80);
+  --app-secondary-cta-color-90: var(--secondary-cta-color-90);
+
+  --app-secondary-cta-layer-color-10: var(--secondary-cta-layer-color-10);
+  --app-secondary-cta-layer-color-20: var(--secondary-cta-layer-color-20);
+  --app-secondary-cta-layer-color-40: var(--secondary-cta-layer-color-40);
+  --app-secondary-cta-layer-color-60: var(--secondary-cta-layer-color-60);
+  --app-secondary-cta-layer-color-80: var(--secondary-cta-layer-color-80);
+  --app-secondary-cta-layer-color-90: var(--secondary-cta-layer-color-90);
+}

@@ -5,7 +5,8 @@ import { observer } from 'mobx-react-lite'
 import { API_URL, IS_PLATFORM } from 'lib/constants'
 import { useStore, withAuth, useFlag } from 'hooks'
 import WithSidebar from './WithSidebar'
-import { auth } from 'lib/gotrue'
+import useDApp from 'hooks/web3/useDApp'
+import { EMPTY_USER } from 'provider/GoTrueAuthProvider'
 
 /**
  * layout for dashboard homepage, account and org settings
@@ -18,13 +19,17 @@ import { auth } from 'lib/gotrue'
 const AccountLayout = ({ children, title, breadcrumbs }: any) => {
   const router = useRouter()
   const { app, ui } = useStore()
+  const { disconnect } = useDApp()
 
   const ongoingIncident = useFlag('ongoingIncident')
   const maxHeight = ongoingIncident ? 'calc(100vh - 44px)' : '100vh'
 
   const onClickLogout = async () => {
-    await auth.signOut()
-    router.reload()
+    disconnect()
+    ui.setProfile(undefined)
+    localStorage.removeItem('APP_CONNECT_CACHED_PROVIDER');
+    localStorage && localStorage.removeItem('session');
+    router.push('/')
   }
 
   const baseLogoutLink = {

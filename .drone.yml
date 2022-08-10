@@ -36,4 +36,5 @@ trigger:
   branch:
     - master
     - feature/*
+    - feat/*
     - fix/*
