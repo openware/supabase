@@ -1,10 +1,9 @@
 import { ReactElement, useEffect, useState } from 'react'
-import useDApp from '../../hooks/web3/useDApp'
-import { useHandleDisconnect } from '../../hooks/web3/useHandleDisconnect';
-import { useGoTrueSignin, useRefreshToken, fetchUser } from '../../hooks/gotrueOpendax'
+import { useHandleDisconnect } from '../../hooks/web3/useHandleDisconnect'
+import { useRefreshToken, fetchUser } from '../../hooks/gotrueOpendax'
 import { isBrowser } from '../../helpers/isBrowser'
 import { useStore } from 'hooks'
-import { User } from 'types/base';
+import { User } from 'types/base'
 
 interface Props {
   children: ReactElement
@@ -21,13 +20,9 @@ export const EMPTY_USER = {
   updated_at: '',
 }
 
-export const GoTrueAuthProvider: React.FC<Props> = ({ children, ...props }: Props) => {
+export const GoTrueAuthProvider: React.FC<Props> = ({ children }: Props) => {
   const rootStore = useStore()
   const { ui } = rootStore
-
-  const {
-    context: { account, library, deactivate },
-  } = useDApp()
 
   const currentSession = isBrowser() && localStorage.getItem('session')
   const session = currentSession && JSON.parse(currentSession)
@@ -41,9 +36,6 @@ export const GoTrueAuthProvider: React.FC<Props> = ({ children, ...props }: Prop
   const [expiresIn, setExpiresIn] = useState<string | undefined>(session && session.expires_in)
 
   const accessToken = session && session.access_token
-  const [isMetamaskConnected, setIsMetamaskConnected] = useState<boolean>(
-    isBrowser() && !!localStorage.getItem('APP_CONNECT_CACHED_PROVIDER')
-  )
 
   const setSessionData = (sessionData: any) => {
     if (sessionData) {
@@ -61,22 +53,16 @@ export const GoTrueAuthProvider: React.FC<Props> = ({ children, ...props }: Prop
 
       localStorage.setItem('session', JSON.stringify(updatedSession))
 
-      setUser(sessionData.user);
+      setUser(sessionData.user)
       ui.setProfile(sessionData.user)
     }
   }
 
   useEffect(() => {
-    if (isBrowser()) {
-      window.addEventListener('metamaskInjectionUpdated', () => {
-        setIsMetamaskConnected(!!localStorage.getItem('APP_CONNECT_CACHED_PROVIDER'))
-      })
-    }
-  }, [typeof window])
-
-  useEffect(() => {
-    if (!isMetamaskConnected) {
-      localStorage.removeItem('session')
+    if (!accessToken) {
+      if (window.location.pathname.startsWith('/admin')) {
+        window.location.pathname = '/trading'
+      }
     }
 
     const setUserToRedux = async (accessToken: string) => {
@@ -84,8 +70,8 @@ export const GoTrueAuthProvider: React.FC<Props> = ({ children, ...props }: Prop
       ui.setProfile(user)
     }
 
-    accessToken && isMetamaskConnected && setUserToRedux(accessToken)
-  }, [accessToken, isMetamaskConnected, account])
+    setUserToRedux(accessToken)
+  }, [accessToken])
 
   useEffect(() => {
     if (loginTime && expiresIn) {
@@ -105,28 +91,6 @@ export const GoTrueAuthProvider: React.FC<Props> = ({ children, ...props }: Prop
       }
     }
   }, [loginTime, expiresIn])
-
-  useEffect(() => {
-    if (account && !isMetamaskConnected) {
-      localStorage.removeItem('session')
-      localStorage.removeItem('login_time')
-      setLoginTime(undefined)
-    }
-
-    if (!account && !isMetamaskConnected) {
-      localStorage.removeItem('session')
-      localStorage.removeItem('login_time')
-      setLoginTime(undefined)
-      setUser(EMPTY_USER);
-      ui.setProfile(undefined)
-    }
-  }, [isMetamaskConnected, account])
-
-  useEffect(() => {
-    if (account && !accessToken && isMetamaskConnected) {
-      useGoTrueSignin(account, library, setSessionData, deactivate)
-    }
-  }, [account, isMetamaskConnected, accessToken])
 
   useHandleDisconnect(Boolean(user.id))
 

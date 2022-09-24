@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { SupaResponse, User } from 'types'
 import { getAuthUser } from 'lib/gotrue'
+import { isAdmin } from 'helpers/isAdmin'
 
 /**
  * Use this method on api routes to check if user is authenticated and having required permissions.
@@ -31,8 +32,10 @@ export async function apiAuthenticate(
       return { error: new Error('The user does not exist') } as unknown as SupaResponse<User>
     }
 
-    if (user.role !== 'superadmin') {
-      return { error: new Error('Access Denied: User is not Admin ') } as unknown as SupaResponse<User>
+    if (isAdmin(user)) {
+      return {
+        error: new Error('Access Denied: User is not Admin '),
+      } as unknown as SupaResponse<User>
     }
 
     return user
@@ -56,7 +59,6 @@ async function fetchUser(req: NextApiRequest, res: NextApiResponse): Promise<any
   if (authError) {
     throw authError
   }
-
 
   // TODO: logic for identity can be ignored
   // if (gotrue_user !== null) {
