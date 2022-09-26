@@ -125,7 +125,7 @@ const ContentWrapper: FC<ContentWrapperProps> = observer(({ isLoading, children 
       ) : requiresDbConnection && isProjectBuilding ? (
         <BuildingState project={ui.selectedProject} />
       ) : ( */}
-        <>{children}</>
+      <>{children}</>
       {/* )} */}
     </>
   )

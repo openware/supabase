@@ -237,10 +237,7 @@ const SidePanelEditor: FC<Props> = ({
     resolve()
   }
 
-  const saveSchema = async (
-    payload: any,
-    resolve: any
-  ) => {
+  const saveSchema = async (payload: any, resolve: any) => {
     try {
       const schema = await meta.createSchema(payload)
 
@@ -249,7 +246,6 @@ const SidePanelEditor: FC<Props> = ({
         category: 'success',
         message: `Schema ${schema.name} is good to go!`,
       })
-
     } catch (error: any) {
       ui.setNotification({ id: payload.name, category: 'error', message: error.message })
     }

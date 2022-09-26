@@ -65,7 +65,8 @@
   src: url('/admin/fonts/source-code-pro/SourceCodePro-Regular.woff2') format('woff2'),
     url('/admin/fonts/source-code-pro/SourceCodePro-Regular.woff') format('woff'),
     url('/admin/fonts/source-code-pro/SourceCodePro-Regular.ttf') format('truetype'),
-    url('/admin/fonts/source-code-pro/SourceCodePro-Regular.svg#SourceCodePro-Regular') format('svg');
+    url('/admin/fonts/source-code-pro/SourceCodePro-Regular.svg#SourceCodePro-Regular')
+      format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

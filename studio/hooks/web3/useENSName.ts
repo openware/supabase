@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import useDApp  from './useDApp'
+import useDApp from './useDApp'
 
 export function useENSName(address?: string | null) {
   const {

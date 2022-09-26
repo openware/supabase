@@ -27,8 +27,8 @@ const AccountLayout = ({ children, title, breadcrumbs }: any) => {
   const onClickLogout = async () => {
     disconnect()
     ui.setProfile(undefined)
-    localStorage.removeItem('APP_CONNECT_CACHED_PROVIDER');
-    localStorage && localStorage.removeItem('session');
+    localStorage.removeItem('APP_CONNECT_CACHED_PROVIDER')
+    localStorage && localStorage.removeItem('session')
     router.push('/')
   }
 

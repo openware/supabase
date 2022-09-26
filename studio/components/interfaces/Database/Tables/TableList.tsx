@@ -62,9 +62,7 @@ const TableList: FC<{
     const tables =
       filterString.length === 0
         ? meta.tables.list((table: any) => table.schema)
-        : meta.tables.list(
-            (table: any) => table.schema && table.name.includes(filterString)
-          )
+        : meta.tables.list((table: any) => table.schema && table.name.includes(filterString))
 
     return (
       <>

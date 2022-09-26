@@ -5,9 +5,11 @@ This document describes how to enable API Docs page and some other usage details
 ## Enable API Docs page
 
 Make sure `SUPABASE_REST_URL` is updated in `.env` file:
+
 ```
   SUPABASE_REST_URL=${API URL}/rest/v1/
 ```
+
 You can get `API URL` during the Studio installment, [see more here](../README.md#developer-quickstart)
 
 ## Usage Details

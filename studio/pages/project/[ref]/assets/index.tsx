@@ -8,21 +8,21 @@ import { ProjectLayoutWithAuth } from 'components/layouts'
 
 const Assets: NextPageWithLayout = () => {
   const { meta, ui } = useStore()
-  const [assets, setAssets] = useState([]);
+  const [assets, setAssets] = useState([])
 
   useEffect(() => {
     const fetchAssets = async () => {
       // TODO: should be assets
       const data = await finexPostgRESTClient.from('currencies').select()
-      console.log('currencies', data);
+      console.log('currencies', data)
     }
     fetchAssets()
   }, [])
 
   return (
     <>
-        <h1>Assets</h1>
-        <div className="mt-10">{assets}</div>
+      <h1>Assets</h1>
+      <div className="mt-10">{assets}</div>
     </>
   )
 }

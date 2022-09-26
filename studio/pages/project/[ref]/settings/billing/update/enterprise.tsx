@@ -90,7 +90,7 @@ const BillingUpdateEnterprise: NextPageWithLayout = () => {
       // TODO: subscription
       // const subscription = await get(`${API_URL}/projects/${projectRef}/subscription`)
       // if (subscription.error) throw subscription.error
-      const subscription = undefined;
+      const subscription = undefined
       setSubscription(subscription)
     } catch (error: any) {
       ui.setNotification({
