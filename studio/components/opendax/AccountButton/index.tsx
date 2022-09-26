@@ -11,7 +11,6 @@ import useWallet from '../../../hooks/web3/useWallet'
 // import { useAppDispatch, useAppSelector } from 'src/providers/ReduxProvider/app/hooks';
 // import { toggleWalletConnectModalOpen } from 'src/providers/ReduxProvider/app/store';
 import { shortenHex } from '../../../helpers/utils'
-import { AccountModal } from './AccountModal'
 import { ConnectorWalletModal } from './ConnectorWalletModal'
 import { useStore } from 'hooks/misc/useStore'
 
@@ -147,15 +146,6 @@ export const AccountButtonWidget: FC<AccountButtonWidgetProps> = ({
           )}
         </div>
       </a>
-      {account && chain && (
-        <AccountModal
-          open={showModal}
-          setOpen={setModal}
-          address={account}
-          chain={chain}
-          handleLogout={() => handleDisconnect()}
-        />
-      )}
     </>
   )
 }

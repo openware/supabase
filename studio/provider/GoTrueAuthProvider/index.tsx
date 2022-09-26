@@ -65,12 +65,12 @@ export const GoTrueAuthProvider: React.FC<Props> = ({ children }: Props) => {
       }
     }
 
-    const setUserToRedux = async (accessToken: string) => {
+    const setUserToStore = async (accessToken: string) => {
       const user = await fetchUser(accessToken)
       ui.setProfile(user)
     }
 
-    setUserToRedux(accessToken)
+    setUserToStore(accessToken)
   }, [accessToken])
 
   useEffect(() => {
