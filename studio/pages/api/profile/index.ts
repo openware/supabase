@@ -45,10 +45,13 @@ const handleGetAll = async (req: NextApiRequest, res: NextApiResponse) => {
   const token = req.cookies['sb-access-token']
 
   try {
+    if (!token) {
+      throw new Error('sb-access-token is missing')
+    }
     const userResponse = await fetchUser(token)
-
     return res.status(200).json(userResponse)
   } catch (error) {
+    console.error('Error: ', error)
     return res.status(401).json({ error })
   }
 }

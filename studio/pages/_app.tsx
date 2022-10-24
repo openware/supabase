@@ -23,8 +23,6 @@ import { useState } from 'react'
 import { RootStore } from 'stores'
 import { StoreProvider } from 'hooks'
 import { GoTrueAuthProvider } from '../provider/GoTrueAuthProvider'
-import { Web3ReactProvider } from '@web3-react/core'
-import { ethers } from 'ethers'
 
 import { PortalToast, AppBannerWrapper } from 'components/interfaces/App'
 
@@ -35,12 +33,6 @@ dayjs.extend(timezone)
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const [rootStore] = useState(() => new RootStore())
 
-  function getLibrary(provider: any): ethers.providers.Web3Provider {
-    const library = new ethers.providers.Web3Provider(provider, 'any')
-    library.pollingInterval = 12000
-    return library
-  }
-
   const getLayout = Component.getLayout ?? ((page) => page)
 
   return (
@@ -50,11 +42,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="stylesheet" type="text/css" href="/admin/css/fonts.css" />
       </Head>
-      <Web3ReactProvider getLibrary={getLibrary}>
-        <GoTrueAuthProvider>
-          <AppBannerWrapper>{getLayout(<Component {...pageProps} />)}</AppBannerWrapper>
-        </GoTrueAuthProvider>
-      </Web3ReactProvider>
+      <GoTrueAuthProvider>
+        <AppBannerWrapper>{getLayout(<Component {...pageProps} />)}</AppBannerWrapper>
+      </GoTrueAuthProvider>
       <PortalToast />
     </StoreProvider>
   )

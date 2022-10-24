@@ -37,25 +37,20 @@ export function withAuth<T>(
 
     useEffect(() => {
       // this should run before redirecting
+      console.log('profile', profile, isLoading)
       if (!isLoading) {
-        if (!profile) {
+        if (!profile || !isAdmin(profile)) {
           ui.setProfile(undefined)
+          window.location.pathname = '/trading'
         } else if (returning !== 'minimal') {
           ui.setProfile(profile)
-
-          // if (!app.organizations.isInitialized) {
-          //   app.organizations.load()
-          // }
-          // if (!app.projects.isInitialized) {
-          //   app.projects.load()
-          // }
         }
       }
 
       // this should run after setting store data
-      if (isRedirecting) {
-        router.push(redirectTo)
-      }
+      // if (isRedirecting) {
+      //   router.push(redirectTo)
+      // }
     }, [isLoading, isRedirecting, profile])
 
     useEffect(() => {

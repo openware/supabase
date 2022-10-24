@@ -59,12 +59,6 @@ export const GoTrueAuthProvider: React.FC<Props> = ({ children }: Props) => {
   }
 
   useEffect(() => {
-    if (!accessToken) {
-      if (window.location.pathname.startsWith('/admin')) {
-        window.location.pathname = '/trading'
-      }
-    }
-
     const setUserToStore = async (accessToken: string) => {
       const user = await fetchUser(accessToken)
       ui.setProfile(user)

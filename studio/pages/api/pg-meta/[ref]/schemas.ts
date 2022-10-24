@@ -27,6 +27,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
 const handleGetAll = async (req: NextApiRequest, res: NextApiResponse) => {
   const headers = constructHeaders(req.headers)
+
+  console.log('request all schemas:', req.headers)
+  console.log('request all schemas headers:', headers)
+
   let response = await get(`${PG_META_URL}/schemas`, {
     headers,
   })

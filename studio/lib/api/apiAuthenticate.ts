@@ -28,11 +28,12 @@ export async function apiAuthenticate(
 
   try {
     const user = await fetchUser(req, res)
+  
     if (!user) {
       return { error: new Error('The user does not exist') } as unknown as SupaResponse<User>
     }
 
-    if (isAdmin(user)) {
+    if (!isAdmin(user)) {
       return {
         error: new Error('Access Denied: User is not Admin '),
       } as unknown as SupaResponse<User>
