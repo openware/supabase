@@ -138,6 +138,12 @@ const AccountLayout = ({ children, title, breadcrumbs }: any) => {
   )
 }
 
+const LayoutWithoutAuth = ({ children }: any) => {
+  return (
+    <>{children}</>
+  );
+}
+
 export default withAuth(observer(AccountLayout))
 
-export const AccountLayoutWithoutAuth = observer(AccountLayout)
+export const AccountLayoutWithoutAuth = observer(LayoutWithoutAuth)
