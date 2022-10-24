@@ -6,10 +6,10 @@ import type { ethers } from 'ethers'
 import { useCallback, useMemo } from 'react'
 import appConfig from '../../config/app'
 import chains from '../../config/chains'
-import { IRPCMap } from '@walletconnect/types';
+import { IRPCMap } from '@walletconnect/types'
 import { useGoTrueLogout } from 'hooks/gotrueOpendax'
 
-let supportedChainIds = appConfig().blockchain.supportedChainIds.map(chainId => +chainId)
+let supportedChainIds = appConfig().blockchain.supportedChainIds.map((chainId) => +chainId)
 
 export type ProviderWhitelist = 'Injected' | 'WalletConnect'
 
@@ -59,7 +59,7 @@ export const connectorsByProvider: {
 }
 
 export const getConnectorInfo = (
-  connector?: AbstractConnector,
+  connector?: AbstractConnector
 ): { id: ProviderWhitelist; name: string } | undefined => {
   switch (connector?.constructor) {
     case InjectedConnector:
@@ -79,17 +79,14 @@ export const getConnectorInfo = (
 
 export default function useDApp() {
   const context = useWeb3React<ethers.providers.Web3Provider>()
-  const { account, activate, connector, error, chainId, library, deactivate } =
-    context
+  const { account, activate, connector, error, chainId, library, deactivate } = context
 
   const signer = useMemo(() => {
     return library?.getSigner()
   }, [library])
 
   const chain = useMemo(() => {
-    return chainId
-      ? chains.find((chain) => chain.chainId === chainId)
-      : undefined
+    return chainId ? chains.find((chain) => chain.chainId === chainId) : undefined
   }, [chainId])
 
   const connectorInfo = useMemo(() => {
@@ -113,7 +110,7 @@ export default function useDApp() {
         })
       }
     },
-    [account],
+    [account]
   )
 
   const disconnect = useCallback(() => {
@@ -126,7 +123,7 @@ export default function useDApp() {
       }
     }
 
-    useGoTrueLogout();
+    useGoTrueLogout()
   }, [connector, connectorInfo])
 
   return {

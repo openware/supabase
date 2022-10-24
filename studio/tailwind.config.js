@@ -37,7 +37,7 @@ const askBidColors = {
   'bid-60': 'var(--bid-60)',
   'bid-80': 'var(--bid-80)',
   'bid-90': 'var(--bid-90)',
-};
+}
 
 const systemColors = {
   'system-green-10': 'var(--system-green-10)',
@@ -64,7 +64,7 @@ const systemColors = {
   'system-red-60': 'var(--system-red-60)',
   'system-red-80': 'var(--system-red-80)',
   'system-red-90': 'var(--system-red-90)',
-};
+}
 
 const blueGray = {
   50: '#F8FAFC',

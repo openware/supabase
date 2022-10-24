@@ -1,10 +1,6 @@
 import type { InjectedConnector } from '@web3-react/injected-connector'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import useDApp, {
-  connectorsByProvider,
-  providerCache,
-  ProviderWhitelist,
-} from './useDApp'
+import useDApp, { connectorsByProvider, providerCache, ProviderWhitelist } from './useDApp'
 
 export function useEagerConnect() {
   const [tried, setTried] = useState(false)
@@ -33,9 +29,7 @@ export function useEagerConnect() {
       return
     }
     ;(async () => {
-      const isAuthorized = await ('isAuthorized' in connector
-        ? injected.isAuthorized()
-        : true)
+      const isAuthorized = await ('isAuthorized' in connector ? injected.isAuthorized() : true)
       if (isAuthorized) {
         activate(connector, undefined, true).finally(() => {
           setTried(true)

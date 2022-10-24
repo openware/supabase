@@ -8,10 +8,7 @@ import ActionBar from '../ActionBar'
 interface Props {
   visible: boolean
   closePanel: () => void
-  saveChanges: (
-    payload: any,
-    resolve: any
-  ) => void
+  saveChanges: (payload: any, resolve: any) => void
 }
 
 const SchemaEditor: FC<Props> = ({
@@ -44,8 +41,8 @@ const SchemaEditor: FC<Props> = ({
   const onSaveChanges = (resolve: any) => {
     if (schemaFields && schemaFields.name) {
       const payload = {
-        name: schemaFields.name
-      };
+        name: schemaFields.name,
+      }
 
       saveChanges(payload, resolve)
     }

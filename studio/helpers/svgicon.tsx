@@ -1,3 +1,3 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
-export const SVGICON: FC<any> = (props) => props.children;
+export const SVGICON: FC<any> = (props) => props.children

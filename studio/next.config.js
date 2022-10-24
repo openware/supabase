@@ -10,7 +10,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 const nextConfig = {
-  basePath: "/admin",
+  basePath: '/admin',
   async redirects() {
     return [
       {

@@ -115,9 +115,7 @@ export interface IMetaStore {
     columns: ColumnField[],
     isRealtimeEnabled: boolean
   ) => any
-  createSchema: (
-    payload: string
-  ) => any
+  createSchema: (payload: string) => any
 }
 export default class MetaStore implements IMetaStore {
   rootStore: IRootStore
@@ -391,14 +389,12 @@ export default class MetaStore implements IMetaStore {
     return duplicatedTable
   }
 
-  async createSchema(
-    payload: any,
-  ) {
+  async createSchema(payload: any) {
     // Create the schema first
     const schema: any = await this.schemas.create(payload)
     if (schema.error) throw schema.error
 
-    return schema;
+    return schema
   }
 
   async createTable(

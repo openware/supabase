@@ -153,10 +153,7 @@
       "wss://kovan.infura.io/ws/v3/${INFURA_API_KEY}",
       "ws://kovan.poa.network:8546"
     ],
-    "faucets": [
-      "https://faucet.kovan.network",
-      "https://gitter.im/kovan-testnet/faucet"
-    ],
+    "faucets": ["https://faucet.kovan.network", "https://gitter.im/kovan-testnet/faucet"],
     "nativeCurrency": {
       "name": "Kovan Ether",
       "symbol": "KOV",

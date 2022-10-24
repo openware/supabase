@@ -9,6 +9,7 @@ import { useStore, withAuth } from 'hooks'
 import Connecting from 'components/ui/Loading'
 import { AccountLayoutWithoutAuth } from 'components/layouts'
 import Landing from 'components/interfaces/Home/Landing'
+import { isAdmin } from 'helpers/isAdmin'
 
 const Home: NextPageWithLayout = () => {
   return (
@@ -49,17 +50,17 @@ const IndexLayout = withAuth(
     const { ui } = useStore()
     const router = useRouter()
     const profile = toJS(ui.profile)
-  
+
     useEffect(() => {
-      if (profile && profile.role === 'superadmin') {
+      if (profile && isAdmin(profile)) {
         router.push('/project/default')
       }
     }, [profile])
-  
-    if (!profile || profile.role !== 'superadmin') {
+
+    if (!profile || !isAdmin(profile)) {
       return <UnauthorizedLanding />
     }
-  
+
     return (
       <AccountLayoutWithoutAuth
         title="Opendax"

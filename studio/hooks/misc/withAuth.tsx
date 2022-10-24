@@ -3,6 +3,7 @@ import { ComponentType, useEffect, useState } from 'react'
 import { NextRouter, useRouter } from 'next/router'
 import { IS_PLATFORM } from 'lib/constants'
 import Connecting from 'components/ui/Loading'
+import { isAdmin } from 'helpers/isAdmin'
 
 const PLATFORM_ONLY_PAGES = ['storage', 'reports', 'settings']
 
@@ -91,7 +92,7 @@ function checkRedirectTo(
   if (router.pathname == redirectTo) return false
 
   // If redirectTo is set, redirect if the user was not found.
-  if (redirectTo && !redirectIfFound && !profile || profile.role !== 'superadmin') return true
+  if ((redirectTo && !redirectIfFound && !profile) || !isAdmin(profile)) return true
   // If redirectIfFound is also set, redirect if the user was found
   if (redirectIfFound && profile) return true
 

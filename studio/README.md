@@ -39,14 +39,17 @@ Project settings are managed outside of the Dashboard. If you use docker-compose
 ### Developer Quickstart
 
 1. install a supabase CLI;
+
 ```bash
 brew install supabase/tap/supabase
 ```
+
 2. install docker;
 3. start docker;
 4. supabase init
 5. supabase start
 6. update envs; file: .env
+
 ```
   STUDIO_PG_META_URL=${API URL}/pg
   SUPABASE_REST_URL=${API URL}/rest/v1/
@@ -55,14 +58,19 @@ brew install supabase/tap/supabase
 ```
 
 also update `SUPABASE_URL` - use `API URL` but without `http://` part, for example:
+
 ```
   SUPABASE_URL=localhost:54321
 ```
+
 7. install dependencies
+
 ```bash
   npm i
 ```
+
 8. start dev server
+
 ```
   npm run dev
 ```
@@ -72,6 +80,7 @@ url: localhost:8082/admin
 ### Enable Storage and platform features
 
 To enable Storage page (and platform other features) please add these variables to the `.env` file:
+
 ```
   NEXT_PUBLIC_IS_PLATFORM=true
   READ_ONLY_URL=${API URL}/pg
@@ -79,6 +88,7 @@ To enable Storage page (and platform other features) please add these variables 
 ```
 
 To make Storage work locally please change `https` to `http` in [`StorageExplorerStore.js`](/studio/localStores/storageExplorer/StorageExplorerStore.js#L100) file in `initializeSupabaseClient` method:
+
 ```
   ...
   this.supabaseClient = createClient(`http://${serviceEndpoint}`, serviceKey, {

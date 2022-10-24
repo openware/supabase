@@ -8,15 +8,12 @@ export async function getBalance(
   _: string,
   provider: any,
   address: string,
-  __: number,
+  __: number
 ): Promise<BigNumber> {
   return provider.getBalance(address)
 }
 
-export default function useBalance(
-  provider: ethers.providers.Web3Provider,
-  address: string,
-) {
+export default function useBalance(provider: ethers.providers.Web3Provider, address: string) {
   const [balance, setBalance] = useState<BigNumber>()
   const blockNumber = useBlockNumber(100)
 
@@ -27,7 +24,7 @@ export default function useBalance(
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
-    },
+    }
   )
 
   useEffect(() => {
