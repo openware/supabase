@@ -29,7 +29,6 @@ const fetchUser = (accessToken: string) => {
       },
     })
     .then((res: any) => {
-      console.log('>> Request response: ', res.data)
       return res.data
     })
     .catch((err) => {

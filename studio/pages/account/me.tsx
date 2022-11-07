@@ -2,9 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { IconMoon, IconSun, Typography, Input, Listbox } from '@supabase/ui'
 
-import { useProfile, useStore } from 'hooks'
-import { post } from 'lib/common/fetch'
-import { API_URL } from 'lib/constants'
+import { useStore } from 'hooks'
 import { AccountLayout } from 'components/layouts'
 import Panel from 'components/ui/Panel'
 import SchemaFormPanel from 'components/to-be-cleaned/forms/SchemaFormPanel'
@@ -36,29 +34,26 @@ export default User
 
 const ProfileCard = observer(() => {
   const { ui } = useStore()
-  const { mutateProfile } = useProfile()
   const user = ui.profile
 
   const updateUser = async (model: any) => {
-    try {
-      const updatedUser = await post(`${API_URL}/profile/update`, model)
-      mutateProfile(updatedUser, false)
-      ui.setProfile(updatedUser)
-      ui.setNotification({ category: 'success', message: 'Successfully saved profile' })
-    } catch (error) {
-      ui.setNotification({
-        error,
-        category: 'error',
-        message: "Couldn't update profile. Please try again later.",
-      })
-    }
+    // TODO: need discuss are we need this logic
+    // try {
+    //   const updatedUser = await post(`${API_URL}/profile/update`, model)
+    //   mutateProfile(updatedUser, false)
+    //   ui.setProfile(updatedUser)
+    //   ui.setNotification({ category: 'success', message: 'Successfully saved profile' })
+    // } catch (error) {
+    //   ui.setNotification({
+    //     error,
+    //     category: 'error',
+    //     message: "Couldn't update profile. Please try again later.",
+    //   })
+    // }
   }
 
   return (
     <article className="max-w-4xl p-4">
-      <section>
-        <GithubProfile />
-      </section>
       <section className="">
         {/* @ts-ignore */}
         <SchemaFormPanel
@@ -82,39 +77,6 @@ const ProfileCard = observer(() => {
         <ThemeSettings />
       </section>
     </article>
-  )
-})
-
-const GithubProfile = observer(() => {
-  const { ui } = useStore()
-
-  return (
-    <Panel
-      title={
-        <Typography.Title key="panel-title" level={5} className="mb-0">
-          Account Information
-        </Typography.Title>
-      }
-    >
-      <Panel.Content>
-        <div className="space-y-2">
-          <Input
-            readOnly
-            disabled
-            label="Username"
-            layout="horizontal"
-            value={ui.profile?.username ?? ''}
-          />
-          <Input
-            readOnly
-            disabled
-            label="Email"
-            layout="horizontal"
-            value={ui.profile?.primary_email ?? ''}
-          />
-        </div>
-      </Panel.Content>
-    </Panel>
   )
 })
 

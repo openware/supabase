@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-// TODO: unused request (move to BE)
 export const useGoTrueLogout = async () => {
   const currentSession = typeof window !== 'undefined' && localStorage.getItem('session')
   const session = currentSession && JSON.parse(currentSession)

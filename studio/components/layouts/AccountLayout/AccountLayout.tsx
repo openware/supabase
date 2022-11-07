@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 import { API_URL, IS_PLATFORM } from 'lib/constants'
 import { useStore, withAuth, useFlag } from 'hooks'
 import WithSidebar from './WithSidebar'
-import useDApp from 'hooks/web3/useDApp'
+import axios from 'axios'
 
 /**
  * layout for dashboard homepage, account and org settings
@@ -18,17 +18,19 @@ import useDApp from 'hooks/web3/useDApp'
 const AccountLayout = ({ children, title, breadcrumbs }: any) => {
   const router = useRouter()
   const { app, ui } = useStore()
-  const { disconnect } = useDApp()
 
   const ongoingIncident = useFlag('ongoingIncident')
   const maxHeight = ongoingIncident ? 'calc(100vh - 44px)' : '100vh'
+  const url = `${API_URL}/profile/logout`;
 
   const onClickLogout = async () => {
-    disconnect()
     ui.setProfile(undefined)
+    await axios.post(url).then(() => {
+      window.location.pathname = '/trading'
+    })
+
     localStorage.removeItem('APP_CONNECT_CACHED_PROVIDER')
     localStorage && localStorage.removeItem('session')
-    router.push('/')
   }
 
   const baseLogoutLink = {
@@ -56,7 +58,7 @@ const AccountLayout = ({ children, title, breadcrumbs }: any) => {
         {
           isActive: router.pathname == '/',
           label: 'All projects',
-          href: '/',
+          href: '/project/default',
         },
       ],
     },
@@ -91,25 +93,6 @@ const AccountLayout = ({ children, title, breadcrumbs }: any) => {
           },
         ]
       : []),
-    {
-      heading: 'Documentation',
-      links: [
-        {
-          key: 'ext-guides',
-          icon: '/img/book.svg',
-          label: 'Guides',
-          href: 'https://supabase.com/docs',
-          external: true,
-        },
-        {
-          key: 'ext-guides',
-          icon: '/img/book-open.svg',
-          label: 'API Reference',
-          href: 'https://supabase.com/docs/guides/api',
-          external: true,
-        },
-      ],
-    },
     {
       links: [logoutLink],
     },
