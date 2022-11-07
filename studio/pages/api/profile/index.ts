@@ -18,19 +18,23 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
 // return promise
 const fetchUser = (accessToken: string) => {
-  let url = `${process.env.NEXT_PUBLIC_GOTRUE_URL}/user`
+  let url = `${process.env.GOTRUE_URL}/user`
+  console.log('>> Request URL:', url);
 
   return axios
     .get(url, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
-        apikey: process.env.NEXT_PUBLIC_GOTRUE_ANON_KEY,
+        apikey: process.env.SUPABASE_ANON_KEY,
       },
     })
     .then((res: any) => {
+      console.log('>> Request response: ', res.data)
       return res.data
     })
     .catch((err) => {
+      console.log('>> Request response: ', err)
+
       const resp = err.request?.response
 
       return {

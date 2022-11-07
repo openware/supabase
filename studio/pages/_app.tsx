@@ -22,7 +22,6 @@ import { AppPropsWithLayout } from 'types'
 import { useState } from 'react'
 import { RootStore } from 'stores'
 import { StoreProvider } from 'hooks'
-import { GoTrueAuthProvider } from '../provider/GoTrueAuthProvider'
 
 import { PortalToast, AppBannerWrapper } from 'components/interfaces/App'
 
@@ -42,9 +41,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="stylesheet" type="text/css" href="/admin/css/fonts.css" />
       </Head>
-      <GoTrueAuthProvider>
         <AppBannerWrapper>{getLayout(<Component {...pageProps} />)}</AppBannerWrapper>
-      </GoTrueAuthProvider>
       <PortalToast />
     </StoreProvider>
   )

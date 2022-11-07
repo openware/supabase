@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// TODO: unused request (move to BE)
 export const useGoTrueLogout = async () => {
   const currentSession = typeof window !== 'undefined' && localStorage.getItem('session')
   const session = currentSession && JSON.parse(currentSession)
@@ -11,7 +12,7 @@ export const useGoTrueLogout = async () => {
       {},
       {
         headers: {
-          apikey: process.env.NEXT_PUBLIC_GOTRUE_ANON_KEY,
+          apikey: process.env.SUPABASE_ANON_KEY,
           Authorization: `Bearer ${accessToken}`,
         },
       }

@@ -6,7 +6,6 @@ import { API_URL, IS_PLATFORM } from 'lib/constants'
 import { useStore, withAuth, useFlag } from 'hooks'
 import WithSidebar from './WithSidebar'
 import useDApp from 'hooks/web3/useDApp'
-import { EMPTY_USER } from 'provider/GoTrueAuthProvider'
 
 /**
  * layout for dashboard homepage, account and org settings

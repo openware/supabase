@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// TODO: unused request (move to BE)
 export const useRefreshToken = async (refreshToken: string, setSessionData: any) => {
   axios
     .post(
@@ -9,7 +10,7 @@ export const useRefreshToken = async (refreshToken: string, setSessionData: any)
       },
       {
         headers: {
-          apikey: process.env.NEXT_PUBLIC_GOTRUE_ANON_KEY,
+          apikey: process.env.SUPABASE_ANON_KEY,
           'x-use-cookie': 'expire',
         },
       }
