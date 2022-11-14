@@ -18,6 +18,7 @@ export async function apiAuthenticate(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<SupaResponse<User>> {
+  console.log('test')
   if (!req) {
     return { error: new Error('Request is not available') } as unknown as SupaResponse<User>
   }
@@ -27,12 +28,14 @@ export async function apiAuthenticate(
   }
 
   try {
+    console.log('apiCheck')
     const user = await fetchUser(req, res)
   
     if (!user) {
       return { error: new Error('The user does not exist') } as unknown as SupaResponse<User>
     }
 
+    console.log("User exist:", user)
     if (!isAdmin(user)) {
       return {
         error: new Error('Access Denied: User is not Admin '),

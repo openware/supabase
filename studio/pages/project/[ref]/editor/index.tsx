@@ -17,7 +17,7 @@ const Editor: NextPage = () => {
   const [sidePanelKey, setSidePanelKey] = useState<'row' | 'column' | 'table' | 'schema'>()
   const [isDeleting, setIsDeleting] = useState<boolean>(false)
   const [isDuplicating, setIsDuplicating] = useState<boolean>(false)
-  const [selectedSchema, setSelectedSchema] = useState<string>('auth')
+  const [selectedSchema, setSelectedSchema] = useState<string>('public')
   const [selectedTableToEdit, setSelectedTableToEdit] = useState<PostgresTable>()
   const [selectedTableToDelete, setSelectedTableToDelete] = useState<PostgresTable>()
 

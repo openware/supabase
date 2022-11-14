@@ -25,6 +25,7 @@ import Base64 from 'lib/base64'
 import { useStore } from 'hooks'
 import { SchemaView } from './TableEditorLayout.types'
 import ProductMenuItem from 'components/ui/ProductMenu/ProductMenuItem'
+import { isAdmin } from 'helpers/isAdmin'
 
 interface Props {
   selectedSchema?: string
@@ -61,6 +62,7 @@ const TableEditorMenu: FC<Props> = ({
   const [searchText, setSearchText] = useState<string>('')
   const [schemaViews, setSchemaViews] = useState<SchemaView[]>([])
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false)
+  console.log('user role:', ui.profile?.role)
 
   // We may need to shift this to the schema store and do something like meta.schema.loadViews()
   // I don't need we need a separate store for views
@@ -123,45 +125,59 @@ const TableEditorMenu: FC<Props> = ({
             <Listbox.Option disabled key="normal-schemas" value="normal-schemas" label="Schemas">
               <p className="text-sm">Schemas</p>
             </Listbox.Option>
-            {openSchemas.map((schema) => (
+            {openSchemas
+              .filter(
+                (schema) =>
+                  (schema.name !== 'finex' && schema.name !== 'signer') ||
+                  (schema.name === 'finex' && ui?.profile?.role !== 'writer') ||
+                  (schema.name === 'signer' && ui?.profile?.role !== 'writer')
+              )
+              .map((schema) => (
+                <Listbox.Option
+                  key={schema.id}
+                  value={schema.name}
+                  // @ts-ignore
+                  label={schema.name}
+                  addOnBefore={() => <span className="text-scale-900">schema</span>}
+                >
+                  <span className="text-scale-1200 text-sm">{schema.name}</span>
+                </Listbox.Option>
+              ))}
+            {ui?.profile?.role !== 'writer' ? (
               <Listbox.Option
-                key={schema.id}
-                value={schema.name}
-                // @ts-ignore
-                label={schema.name}
-                addOnBefore={() => <span className="text-scale-900">schema</span>}
+                disabled
+                key="protected-schemas"
+                value="protected-schemas"
+                label="Protected schemas"
               >
-                <span className="text-scale-1200 text-sm">{schema.name}</span>
+                <p className="text-sm">Protected schemas</p>
               </Listbox.Option>
-            ))}
-            <Listbox.Option
-              disabled
-              key="protected-schemas"
-              value="protected-schemas"
-              label="Protected schemas"
-            >
-              <p className="text-sm">Protected schemas</p>
-            </Listbox.Option>
-            {protectedSchemas.map((schema) => (
-              <Listbox.Option
-                key={schema.id}
-                value={schema.name}
-                // @ts-ignore
-                label={schema.name}
-                addOnBefore={() => <span className="text-scale-900">schema</span>}
-              >
-                <span className="text-scale-1200 text-sm">{schema.name}</span>
-              </Listbox.Option>
-            ))}
+            ) : (
+              <></>
+            )}
+            {ui?.profile?.role !== 'writer' ? (
+              protectedSchemas.map((schema) => (
+                <Listbox.Option
+                  key={schema.id}
+                  value={schema.name}
+                  // @ts-ignore
+                  label={schema.name}
+                  addOnBefore={() => <span className="text-scale-900">schema</span>}
+                >
+                  <span className="text-scale-1200 text-sm">{schema.name}</span>
+                </Listbox.Option>
+              ))
+            ) : (
+              <></>
+            )}
           </Listbox>
         )}
       </div>
 
       <div className="space-y-1">
-        {!isLocked && (
+        {ui?.profile?.role !== 'writer' ? (
           <>
             <div className="px-3">
-              {/* Add new schema button */}
               <Button
                 block
                 size="tiny"
@@ -178,7 +194,6 @@ const TableEditorMenu: FC<Props> = ({
               </Button>
             </div>
             <div className="px-3">
-              {/* Add new table button */}
               <Button
                 block
                 size="tiny"
@@ -195,6 +210,8 @@ const TableEditorMenu: FC<Props> = ({
               </Button>
             </div>
           </>
+        ) : (
+          <></>
         )}
         {/* Table search input */}
         <div className="mb-2 block px-3">

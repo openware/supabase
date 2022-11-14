@@ -11,7 +11,7 @@ steps:
     image: alpine:3
     pull: if-not-exists
     commands:
-      - echo '${DRONE_SOURCE_BRANCH//\//-},${DRONE_COMMIT:0:7}' > .tags
+      - echo 'yellow-${DRONE_COMMIT:0:7}' > .tags
 
   - name: Docker build SHA
     image: plugins/docker:20
@@ -26,6 +26,7 @@ steps:
       repo: quay.io/openware/studio
       registry: quay.io
       context: studio
+      tags: "yellow-${DRONE_COMMIT:0:7}"
       cache_from:
         - "quay.io/openware/studio:master"
         - 'quay.io/openware/studio:${DRONE_SOURCE_BRANCH//\//-}'
@@ -38,3 +39,4 @@ trigger:
     - feature/*
     - feat/*
     - fix/*
+    - main/*
