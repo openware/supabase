@@ -6,6 +6,7 @@ import { useStore } from 'hooks'
 import BreadcrumbsView from './BreadcrumbsView'
 import OrgDropdown from './OrgDropdown'
 import ProjectDropdown from './ProjectDropdown'
+import { IconArrowRight } from '@supabase/ui'
 // import FeedbackDropdown from './FeedbackDropdown'
 // import HelpPopover from './HelpPopover'
 // import NotificationsPopover from './NotificationsPopover'
@@ -68,6 +69,13 @@ const LayoutHeader = ({ customHeaderComponents, breadcrumbs = [], headerBorder =
         {/* {IS_PLATFORM && <FeedbackDropdown />} */}
         {/* {IS_PLATFORM && <NotificationsPopover />} */}
       </div>
+      <a
+        href={window.location.origin + '/trading'}
+        className="flex text-xs items-center rounded-md border border-current p-2 my-1"
+      >
+        <span className="mr-1">Back to the trading page</span>
+        <IconArrowRight size={14} strokeWidth={2} />
+      </a>
     </div>
     // </div>
     // </div>
